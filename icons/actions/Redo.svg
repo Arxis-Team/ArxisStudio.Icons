@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
+     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <title>Вернуть отменённую правку.</title>
+  <desc>Действия</desc>
+  <path d="M12.5 6H6A3.5 3.5 0 0 0 6 13H8.5M12.5 6 9.5 3M12.5 6 9.5 9"/>
+</svg>

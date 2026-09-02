@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
+     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <title>Сетка (Grid).</title>
+  <desc></desc>
+  <path d="M3 3.5h10v9H3zM8 3.5v9M3 8h10"/>
+</svg>

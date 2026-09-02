@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
+     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <title>Приглашение консоли.</title>
+  <desc>Запуск и отладка</desc>
+  <path d="M2.5 3.5H13.5V12.5H2.5ZM5.2 7.2 7.2 9.2 5.2 11.2M8.4 11.2H11.2"/>
+</svg>

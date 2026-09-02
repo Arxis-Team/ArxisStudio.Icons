@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
+     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <title>Три точки вертикально: меню строки. IsFilled.</title>
+  <desc>Поиск, списки, таблицы</desc>
+  <path d="M6.85 3.8A1.15 1.15 0 1 1 9.15 3.8A1.15 1.15 0 1 1 6.85 3.8ZM6.85 8A1.15 1.15 0 1 1 9.15 8A1.15 1.15 0 1 1 6.85 8ZM6.85 12.2A1.15 1.15 0 1 1 9.15 12.2A1.15 1.15 0 1 1 6.85 12.2Z"/>
+</svg>
