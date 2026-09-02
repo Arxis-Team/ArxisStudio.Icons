@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <!-- Avalonia 12 не поставляет netstandard2.0-сборки: минимальный TFM — net8.0. -->
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>ArxisStudio.Icons</RootNamespace>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <!--
+        Набор — самостоятельная библиотека, а не часть контролов: ни один контрол
+        студии его не зовёт, зато зовут тема, оболочка и плагины. Версия 0.x
+        осознанно: набор растёт вместе с экранами студии.
+    -->
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <PackageId>ArxisStudio.Icons</PackageId>
+        <Version>0.1.0</Version>
+        <Authors>ArxisStudio</Authors>
+        <Company>ArxisStudio</Company>
+        <Copyright>Copyright (c) 2026 ArxisStudio</Copyright>
+        <Product>ArxisStudio.Icons</Product>
+        <Description>Набор иконок ArxisStudio — контурные пути в клетке 16×16 и контрол AxIcon, который их рисует. Контрол lookless: внешний вид задаёт тема (ArxisStudio.Themes.*).</Description>
+        <PackageTags>avalonia;icons;ide;arxisstudio</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../README.md" Pack="true" PackagePath="/"/>
+    </ItemGroup>
+
+</Project>
