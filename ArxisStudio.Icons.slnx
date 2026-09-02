@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Icons.Gallery/Icons.Gallery.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/ArxisStudio.Icons.csproj" />
   </Folder>

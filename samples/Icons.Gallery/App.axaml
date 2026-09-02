@@ -1,0 +1,48 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:axi="using:ArxisStudio.Icons"
+             x:Class="Icons.Gallery.App">
+
+  <Application.Styles>
+    <FluentTheme/>
+
+    <!--
+        Свой ControlTheme для AxIcon, а не тема студии.
+
+        Контрол lookless, и одеть его должен кто-то. Тянуть сюда
+        ArxisStudio.Themes.Arxis значило бы притащить в самодостаточный
+        репозиторий три соседних и судить о пути через чужие решения о цвете и
+        размере. Витрине нужен ровно тот минимум, в котором путь виден: клетка
+        16×16, а обводка и цвет — снаружи.
+
+        Клетка здесь числом, как и в теме студии: это система координат, в
+        которой нарисован набор, а не размер, которым иконку показывают.
+    -->
+    <Style Selector="axi|AxIcon">
+      <Setter Property="Width" Value="16"/>
+      <Setter Property="Height" Value="16"/>
+      <Setter Property="StrokeThickness" Value="1"/>
+      <Setter Property="Foreground" Value="#DFE1E5"/>
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Viewbox Stretch="Uniform">
+            <Canvas Width="16" Height="16">
+              <Path x:Name="PART_Path"
+                    Data="{TemplateBinding Data}"
+                    Stroke="{TemplateBinding Foreground}"
+                    StrokeThickness="{TemplateBinding StrokeThickness}"
+                    StrokeLineCap="Round"
+                    StrokeJoin="Round"/>
+            </Canvas>
+          </Viewbox>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="axi|AxIcon[IsFilled=True] /template/ Path#PART_Path">
+      <Setter Property="Fill" Value="{Binding $parent[axi:AxIcon].Foreground}"/>
+      <Setter Property="Stroke" Value="{x:Null}"/>
+    </Style>
+  </Application.Styles>
+
+</Application>

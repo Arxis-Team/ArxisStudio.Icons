@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <!--
+        Витрина набора: здесь иконку смотрят вблизи и меряют, а не любуются.
+        Тему сюда не тянем — репозиторий самодостаточен, а ControlTheme для
+        AxIcon у витрины свой, на несколько строк: судить надо о самом пути, а
+        не о том, каким его делает оформление студии.
+    -->
+    <ItemGroup>
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Avalonia.Desktop"/>
+        <PackageReference Include="Avalonia.Themes.Fluent"/>
+    </ItemGroup>
+
+    <!--
+        AvaDevTools — дерево, стили, раскладка и конечная точка MCP на петле.
+        Оснастка отладочная: в Release её нет.
+
+        Порт свой: студия занимает 5171, галерея контролов 5172. Один порт на
+        троих означал бы, что подключение достаётся тому, кто успел первым.
+    -->
+    <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+        <PackageReference Include="AvaDevTools"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../../src/ArxisStudio.Icons.csproj"/>
+    </ItemGroup>
+
+</Project>
