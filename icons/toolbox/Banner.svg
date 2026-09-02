@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола Banner для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M2.5 5.5H13.5V10.5H2.5ZM3.7 8A1.3 1.3 0 1 1 6.3 8A1.3 1.3 0 1 1 3.7 8ZM7.5 8H11.5"/>
+  <path d="M2.5 5.5H13.5V10.5H2.5ZM3.7 8A1.3 1.3 0 1 1 6.3 8A1.3 1.3 0 1 1 3.7 8ZM7.5 8.5H11.5"/>
 </svg>

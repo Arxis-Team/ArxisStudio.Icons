@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола TimePicker для палитры дизайнера.</title>
   <desc>Дата и время</desc>
-  <path d="M2.8 8A5.2 5.2 0 1 1 13.2 8A5.2 5.2 0 1 1 2.8 8ZM8 8V5.2M8 8H10.4"/>
+  <path d="M2.8 8A5.2 5.2 0 1 1 13.2 8A5.2 5.2 0 1 1 2.8 8ZM8.5 8V5.2M8 8.5H10.4"/>
 </svg>

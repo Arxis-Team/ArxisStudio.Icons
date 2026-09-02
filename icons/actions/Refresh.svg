@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Обновить, перечитать.</title>
   <desc>Действия</desc>
-  <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5C9.5 2.5 11 3.1 12.1 4.2L13.5 5.6M13.5 2.5V5.6H10.4"/>
+  <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5C9.5 2.5 11 3.1 12.1 4.2L13.5 5.6M13.5 2.5V5.5H10.4"/>
 </svg>

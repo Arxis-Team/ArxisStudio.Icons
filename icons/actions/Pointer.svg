@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Курсор-указатель: инструмент выбора.</title>
   <desc>Дизайнер форм</desc>
-  <path d="M4.2 2.8 11.6 8.4 8.1 9 10.2 12.8 8.7 13.6 6.6 9.8 4.2 12.4Z"/>
+  <path d="M4.5 2.8L11.6 8.4L8.1 9L10.2 12.8L8.7 13.6L6.6 9.8L4.5 12.4Z"/>
 </svg>

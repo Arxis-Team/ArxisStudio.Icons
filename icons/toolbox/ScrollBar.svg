@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола ScrollBar для палитры дизайнера.</title>
   <desc>Прокрутка и разделители</desc>
-  <path d="M6.4 2.5H9.6V13.5H6.4ZM6.4 5H9.6M6.4 10.5H9.6"/>
+  <path d="M6.5 2.5H9.5V13.5H6.5ZM6.4 4.5H9.6M6.4 10.5H9.6"/>
 </svg>

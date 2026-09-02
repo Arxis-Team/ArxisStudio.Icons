@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Стрелки вверх-вниз: сортировка.</title>
   <desc>Поиск, списки, таблицы</desc>
-  <path d="M4.5 3.5V12.5M2.6 10.6 4.5 12.5 6.4 10.6M11.5 12.5V3.5M9.6 5.4 11.5 3.5 13.4 5.4"/>
+  <path d="M4.5 3.5V12.5M2.6 10.6L4.5 12.5L6.4 10.6M11.5 12.5V3.5M9.6 5.4L11.5 3.5L13.4 5.4"/>
 </svg>

@@ -80,7 +80,7 @@ internal static class Program
 
         return at >= 0 && at + 1 < args.Length
             ? double.Parse(args[at + 1], CultureInfo.InvariantCulture)
-            : 1.0;
+            : 1.2;
     }
 
     /// <summary>

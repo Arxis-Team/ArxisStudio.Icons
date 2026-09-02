@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола TeachingTip для палитры дизайнера.</title>
   <desc>Меню и всплывающие</desc>
-  <path d="M3 3.5H13V10H8.5L5.5 12.8V10H3ZM8 5.5V7.4M8 8.6v.2"/>
+  <path d="M2.5 3.5H12.5V10.5H8.5L5.5 12.8V10.5H2.5ZM8.5 5.5V7.4M8.5 8.6V8.8"/>
 </svg>

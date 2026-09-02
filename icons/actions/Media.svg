@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Медиа: кадр с треугольником.</title>
   <desc></desc>
-  <path d="M2.5 3.5h11v9h-11zM6.5 6l3.5 2-3.5 2z"/>
+  <path d="M2.5 3.5H13.5V12.5H2.5ZM6.5 6L10 8L6.5 10Z"/>
 </svg>

@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола RefreshContainer для палитры дизайнера.</title>
   <desc>Прогресс, медиа, оверлеи</desc>
-  <path d="M2.5 5.5H13.5V12.5H2.5ZM8 2V4.6M6.8 3.4 8 4.6 9.2 3.4"/>
+  <path d="M2.5 5.5H13.5V12.5H2.5ZM8.5 2V4.6M6.8 3.4L8 4.6L9.2 3.4"/>
 </svg>

@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола RepeatButton для палитры дизайнера.</title>
   <desc>Кнопки</desc>
-  <path d="M2.5 5.5H13.5V10.5H2.5ZM5 8H8.2M10 6.9 11.1 8 10 9.1M11.7 6.9 12.8 8 11.7 9.1"/>
+  <path d="M2.5 5.5H13.5V10.5H2.5ZM5 8.5H8.2M10 6.9L11.1 8L10 9.1M11.7 6.9L12.8 8L11.7 9.1"/>
 </svg>

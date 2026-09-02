@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Плюс.</title>
   <desc></desc>
-  <path d="M8 3.5v9M3.5 8h9"/>
+  <path d="M8.5 3.5V12.5M3.5 8.5H12.5"/>
 </svg>

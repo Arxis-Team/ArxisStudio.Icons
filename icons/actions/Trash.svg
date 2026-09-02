@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Корзина: удалить.</title>
   <desc>Действия</desc>
-  <path d="M3 4.5H13M6.3 4.5V3.2H9.7V4.5M4.6 4.5 5.2 12.9H10.8L11.4 4.5M7 7V10.6M9 7V10.6"/>
+  <path d="M3 4.5H13M6.5 4.5V3.5H9.5V4.5M4.6 4.5L5.2 12.5H10.8L11.4 4.5M6.5 7V10.6M8.5 7V10.6"/>
 </svg>

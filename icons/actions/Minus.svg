@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Минус: убрать, уменьшить.</title>
   <desc>Действия</desc>
-  <path d="M3.5 8H12.5"/>
+  <path d="M3.5 8.5H12.5"/>
 </svg>

@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Выровнять по левому краю.</title>
   <desc>Дизайнер форм</desc>
-  <path d="M2.5 2.5V13.5M4.5 5.5H11.5M4.5 8H13M4.5 10.5H9"/>
+  <path d="M2.5 2.5V13.5M4.5 5.5H11.5M4.5 8.5H13M4.5 10.5H9"/>
 </svg>

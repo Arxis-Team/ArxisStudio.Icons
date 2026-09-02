@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Круг с галочкой: успех.</title>
   <desc>Статусы</desc>
-  <path d="M13.5 8a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0M5.2 8.2 7 10 10.8 6"/>
+  <path d="M13.5 8A5.5 5.5 0 1 1 2.5 8A5.5 5.5 0 0 1 13.5 8M5.2 8.2L7 10L10.8 6"/>
 </svg>

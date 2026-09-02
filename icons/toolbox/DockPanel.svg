@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола DockPanel для палитры дизайнера.</title>
   <desc>Контейнеры и компоновка</desc>
-  <path d="M2.5 3.5H13.5V12.5H2.5ZM2.5 6H13.5M5 6V12.5M11 6V12.5"/>
+  <path d="M2.5 3.5H13.5V12.5H2.5ZM2.5 6.5H13.5M4.5 6V12.5M10.5 6V12.5"/>
 </svg>

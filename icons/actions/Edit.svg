@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Карандаш: переименовать, изменить.</title>
   <desc>Действия</desc>
-  <path d="M10.7 2.8 13.2 5.3 5.8 12.7H3.3V10.2ZM9.2 4.3 11.7 6.8"/>
+  <path d="M10.7 2.8L13.2 5.3L5.8 12.5H3.5V10.2ZM9.2 4.3L11.7 6.8"/>
 </svg>

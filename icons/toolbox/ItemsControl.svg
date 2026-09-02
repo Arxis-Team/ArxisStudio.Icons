@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола ItemsControl для палитры дизайнера.</title>
   <desc>Списки и данные</desc>
-  <path d="M4.5 4.5H13.5M4.5 8H13.5M4.5 11.5H13.5M2.6 4.5h.1M2.6 8h.1M2.6 11.5h.1"/>
+  <path d="M4.5 4.5H13.5M4.5 8.5H13.5M4.5 11.5H13.5M2.6 4.5H2.7M2.6 8.5H2.7M2.6 11.5H2.7"/>
 </svg>

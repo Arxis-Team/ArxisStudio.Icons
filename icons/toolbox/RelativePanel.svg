@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола RelativePanel для палитры дизайнера.</title>
   <desc>Контейнеры и компоновка</desc>
-  <path d="M2.5 3.5H13.5V12.5H2.5ZM8.5 7.5H12.5V10.5H8.5ZM8.5 9H2.5M10.5 7.5V3.5"/>
+  <path d="M2.5 3.5H13.5V12.5H2.5ZM8.5 7.5H12.5V10.5H8.5ZM8.5 8.5H2.5M10.5 7.5V3.5"/>
 </svg>

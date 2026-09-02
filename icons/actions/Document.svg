@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Документ.</title>
   <desc></desc>
-  <path d="M4 2.5h5.5L12.5 6v7.5H4zM9.5 2.5V6h3"/>
+  <path d="M4.5 2.5H9.5L12.5 6V13.5H4.5ZM9.5 2.5V6.5H12.5"/>
 </svg>

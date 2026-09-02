@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола UniformGrid для палитры дизайнера.</title>
   <desc>Контейнеры и компоновка</desc>
-  <path d="M2.5 3.5H13.5V12.5H2.5ZM6.17 3.5V12.5M9.83 3.5V12.5M2.5 8H13.5"/>
+  <path d="M2.5 3.5H13.5V12.5H2.5ZM6.5 3.5V12.5M9.5 3.5V12.5M2.5 8.5H13.5"/>
 </svg>

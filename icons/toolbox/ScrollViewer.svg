@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола ScrollViewer для палитры дизайнера.</title>
   <desc>Прокрутка и разделители</desc>
-  <path d="M2.5 3.5H11.5V12.5H2.5ZM13 4.5V8.5"/>
+  <path d="M2.5 3.5H11.5V12.5H2.5ZM12.5 4.5V8.5"/>
 </svg>

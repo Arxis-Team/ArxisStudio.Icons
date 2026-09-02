@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+     stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Пауза. IsFilled.</title>
   <desc>Запуск и отладка</desc>
-  <path d="M4.6 4H6.8V12H4.6ZM9.2 4H11.4V12H9.2Z"/>
+  <path d="M5 4H7V12H5ZM9 4H11V12H9Z"/>
 </svg>

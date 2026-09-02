@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола Badge для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M2.5 7.2H8.2V13.2H2.5ZM9.9 4.8A2 2 0 1 1 13.9 4.8A2 2 0 1 1 9.9 4.8Z"/>
+  <path d="M2.5 7.5H8.5V13.5H2.5ZM9.9 4.8A2 2 0 1 1 13.9 4.8A2 2 0 1 1 9.9 4.8Z"/>
 </svg>

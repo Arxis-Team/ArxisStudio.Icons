@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Молния по кругу: горячая перезагрузка.</title>
   <desc>Запуск и отладка</desc>
-  <path d="M9.5 2.5 5 8.8H7.8L6.5 13.5 11 7.2H8.2Z"/>
+  <path d="M9.5 2.5L5 8.5H7.8L6.5 13.5L11 7.5H8.2Z"/>
 </svg>

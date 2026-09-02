@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Шеврон вверх: свернуть раскрытое.</title>
   <desc>Раскрытие</desc>
-  <path d="M4.2 10 8 6.2 11.8 10"/>
+  <path d="M4.2 10L8 6.2L11.8 10"/>
 </svg>

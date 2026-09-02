@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола SearchField для палитры дизайнера.</title>
   <desc>Ввод текста</desc>
-  <path d="M2.5 5.5H13.5V10.5H2.5ZM4 8A1.4 1.4 0 1 1 6.8 8A1.4 1.4 0 1 1 4 8ZM6.4 9 7.5 10.1M9 8H11.5"/>
+  <path d="M2.5 5.5H13.5V10.5H2.5ZM4 8A1.4 1.4 0 1 1 6.8 8A1.4 1.4 0 1 1 4 8ZM6.4 9L7.5 10.1M9 8.5H11.5"/>
 </svg>

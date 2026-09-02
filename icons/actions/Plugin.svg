@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Вилка-разъём: плагин.</title>
   <desc>Проект и файлы</desc>
-  <path d="M6 2.5V5.5M10 2.5V5.5M4.5 5.5H11.5V8.5A3 3 0 0 1 8.5 11.5H7.5A3 3 0 0 1 4.5 8.5ZM8 11.5V13.5"/>
+  <path d="M6.5 2.5V5.5M10.5 2.5V5.5M4.5 5.5H11.5V8.5A3 3 0 0 1 8.5 11.5H7.5A3 3 0 0 1 4.5 8.5ZM8.5 11.5V13.5"/>
 </svg>

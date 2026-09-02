@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Шеврон вниз.</title>
   <desc></desc>
-  <path d="M4.2 6 8 9.8 11.8 6"/>
+  <path d="M4.2 6L8 9.8L11.8 6"/>
 </svg>

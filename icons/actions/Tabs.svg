@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Вкладки.</title>
   <desc></desc>
-  <path d="M3 6.5h10v6H3zM3 6.5V3.5h4.5v3"/>
+  <path d="M2.5 6.5H12.5V12.5H2.5ZM2.5 6.5V3.5H7.5V6.5"/>
 </svg>

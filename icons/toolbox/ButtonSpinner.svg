@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола ButtonSpinner для палитры дизайнера.</title>
   <desc>Кнопки</desc>
-  <path d="M2.5 5.5H13.5V10.5H2.5ZM10 5.5V10.5M4.5 8H8M11 7.4 11.75 6.7 12.5 7.4M11 8.9 11.75 9.6 12.5 8.9"/>
+  <path d="M2.5 5.5H13.5V10.5H2.5ZM10.5 5.5V10.5M4.5 8.5H8M11 7.4L11.75 6.7L12.5 7.4M11 8.9L11.75 9.6L12.5 8.9"/>
 </svg>

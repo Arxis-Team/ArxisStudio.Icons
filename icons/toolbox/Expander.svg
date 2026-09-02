@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола Expander для палитры дизайнера.</title>
   <desc>Контейнеры и компоновка</desc>
-  <path d="M2.5 3.5H13.5V6.3H2.5ZM4.4 4.6 5.15 5.35 5.9 4.6M2.5 9.1H13.5V12.5H2.5Z"/>
+  <path d="M2.5 3.5H13.5V6.5H2.5ZM4.4 4.6L5.15 5.35L5.9 4.6M2.5 9.5H13.5V12.5H2.5Z"/>
 </svg>

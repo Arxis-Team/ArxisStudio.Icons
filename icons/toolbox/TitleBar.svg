@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола TitleBar для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M2.5 4.5H13.5V11.5H2.5ZM2.5 7H13.5M9.5 5.7h.1M11 5.7h.1M12.5 5.7h.1"/>
+  <path d="M2.5 4.5H13.5V11.5H2.5ZM2.5 6.5H13.5M9.5 5.5H9.6M11 5.5H11.1M12.5 5.5H12.6"/>
 </svg>

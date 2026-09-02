@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола GroupHeader для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M2.5 6.8H6.2V9.2H2.5ZM7.6 8H13.5"/>
+  <path d="M2.5 6.5H6.5V9.5H2.5ZM7.6 8.5H13.5"/>
 </svg>

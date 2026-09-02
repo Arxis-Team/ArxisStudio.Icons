@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Треугольник с восклицательным знаком: предупреждение в баннере и списке проблем.</title>
   <desc>Статусы</desc>
-  <path d="M8 3 13.9 12.9H2.1ZM8 6.6V9.4M8 11.1v.2"/>
+  <path d="M8 3L13.9 12.5H2.1ZM8.5 6.6V9.4M8.5 11.1V11.3"/>
 </svg>

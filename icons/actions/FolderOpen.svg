@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Раскрытая папка.</title>
   <desc>Проект и файлы</desc>
-  <path d="M2.5 12.5V4.8H6.5L7.9 6.2H13.5V7.9M2.5 12.5 4.2 7.9H13.9L12.2 12.5Z"/>
+  <path d="M2.5 12.5V4.5H6.5L7.9 6.5H13.5V7.9M2.5 12.5L4.2 7.5H13.9L12.2 12.5Z"/>
 </svg>

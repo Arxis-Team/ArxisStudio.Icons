@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Крестик: закрыть, сбросить.</title>
   <desc></desc>
-  <path d="M4 4l8 8M12 4l-8 8"/>
+  <path d="M4 4L12 12M12 4L4 12"/>
 </svg>

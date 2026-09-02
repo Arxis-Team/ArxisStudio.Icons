@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола ToggleSwitch для палитры дизайнера.</title>
   <desc>Выбор</desc>
-  <path d="M4.6 5.9H9.4A2.1 2.1 0 0 1 9.4 10.1H4.6A2.1 2.1 0 0 1 4.6 5.9ZM8.2 8A1.2 1.2 0 1 1 10.6 8A1.2 1.2 0 1 1 8.2 8Z"/>
+  <path d="M4.6 5.5H9.4A2.5 2.5 0 0 1 9.4 10.5H4.6A2.5 2.5 0 0 1 4.6 5.5ZM8.2 8A1.2 1.2 0 1 1 10.6 8A1.2 1.2 0 1 1 8.2 8Z"/>
 </svg>

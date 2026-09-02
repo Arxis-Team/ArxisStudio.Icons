@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола CalendarDatePicker для палитры дизайнера.</title>
   <desc>Дата и время</desc>
-  <path d="M2.5 5.5H9.5V10.5H2.5ZM4.5 8H7M11 5.5H13.5V8.5H11ZM11.6 5.5V4.7M12.9 5.5V4.7"/>
+  <path d="M2.5 5.5H9.5V10.5H2.5ZM4.5 8.5H7M10.5 5.5H13.5V8.5H10.5ZM11.5 5.5V4.7M12.5 5.5V4.7"/>
 </svg>

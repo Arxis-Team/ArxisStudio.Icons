@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола Chip для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M5.4 5.9H10.6A2.1 2.1 0 0 1 10.6 10.1H5.4A2.1 2.1 0 0 1 5.4 5.9ZM7 8H9"/>
+  <path d="M5.4 5.5H10.6A2.5 2.5 0 0 1 10.6 10.5H5.4A2.5 2.5 0 0 1 5.4 5.5ZM7 8.5H9"/>
 </svg>

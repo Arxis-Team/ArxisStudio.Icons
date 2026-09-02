@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола Slider для палитры дизайнера.</title>
   <desc>Выбор</desc>
-  <path d="M2.5 8H13.5M7.5 8A2 2 0 1 1 11.5 8A2 2 0 1 1 7.5 8Z"/>
+  <path d="M2.5 8.5H13.5M7.5 8A2 2 0 1 1 11.5 8A2 2 0 1 1 7.5 8Z"/>
 </svg>

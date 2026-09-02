@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Диалог (чат, сообщество).</title>
   <desc></desc>
-  <path d="M3 4h10v6.5H8L5 13v-2.5H3z"/>
+  <path d="M2.5 4.5H12.5V10.5H8L4.5 13V10.5H2.5Z"/>
 </svg>

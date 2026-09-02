@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола TextBlock для палитры дизайнера.</title>
   <desc>Ввод текста</desc>
-  <path d="M3 5H13M3 8H13M3 11H9"/>
+  <path d="M3 4.5H13M3 8.5H13M3 10.5H9"/>
 </svg>

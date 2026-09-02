@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола AutoCompleteBox для палитры дизайнера.</title>
   <desc>Ввод текста</desc>
-  <path d="M2.5 4.5H13.5V7.3H2.5ZM4.5 5.3V6.5M2.5 10.1H13.5V12.9H2.5Z"/>
+  <path d="M2.5 4.5H13.5V7.5H2.5ZM4.5 5.3V6.5M2.5 10.5H13.5V12.5H2.5Z"/>
 </svg>

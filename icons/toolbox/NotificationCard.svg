@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола NotificationCard для палитры дизайнера.</title>
   <desc>Прогресс, медиа, оверлеи</desc>
-  <path d="M2.5 4.5H13.5V11.5H2.5ZM5 4.5V11.5M7 7H11.5M7 9H10"/>
+  <path d="M2.5 4.5H13.5V11.5H2.5ZM4.5 4.5V11.5M7 6.5H11.5M7 8.5H10"/>
 </svg>

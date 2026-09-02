@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола HyperlinkButton для палитры дизайнера.</title>
   <desc>Кнопки</desc>
-  <path d="M3.5 6.6H12.5M3.5 8.8H9.5M3.5 10.4H9.5"/>
+  <path d="M3.5 6.5H12.5M3.5 8.5H9.5M3.5 10.5H9.5"/>
 </svg>

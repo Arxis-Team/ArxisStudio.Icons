@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола SegmentedControl для палитры дизайнера.</title>
   <desc>Выбор</desc>
-  <path d="M2.5 5.5H13.5V10.5H2.5ZM6.2 5.5V10.5M9.8 5.5V10.5"/>
+  <path d="M2.5 5.5H13.5V10.5H2.5ZM6.5 5.5V10.5M9.5 5.5V10.5"/>
 </svg>

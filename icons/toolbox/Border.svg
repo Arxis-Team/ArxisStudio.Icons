@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола Border для палитры дизайнера.</title>
   <desc>Контейнеры и компоновка</desc>
-  <path d="M2.5 2.5H13.5V13.5H2.5ZM5 5H11V11H5Z"/>
+  <path d="M2.5 2.5H13.5V13.5H2.5ZM4.5 4.5H10.5V10.5H4.5Z"/>
 </svg>

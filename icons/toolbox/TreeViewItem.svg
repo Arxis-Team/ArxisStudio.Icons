@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола TreeViewItem для палитры дизайнера.</title>
   <desc>Списки и данные</desc>
-  <path d="M2.8 6.9 4 8 2.8 9.1M5.5 8H13.5"/>
+  <path d="M2.8 6.9L4 8L2.8 9.1M5.5 8.5H13.5"/>
 </svg>

@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Папка.</title>
   <desc></desc>
-  <path d="M2.5 4.8h4l1.4 1.4h5.6v6.3H2.5z"/>
+  <path d="M2.5 4.5H6.5L7.9 6.5H13.5V12.5H2.5Z"/>
 </svg>

@@ -30,7 +30,9 @@ public sealed class MainWindow : Window
     private readonly WrapPanel _tiles = new();
     private readonly TextBlock _worst = new() { Name = "Worst", FontFamily = new FontFamily("Consolas") };
 
-    private double _stroke = 1.0;
+    // Та же обводка, что у студии: витрина обязана показывать отгружаемое,
+    // а не удобное. Соседние значения рядом — чтобы было с чем сравнить.
+    private double _stroke = 1.2;
     private Icon? _chosen;
 
     public MainWindow()

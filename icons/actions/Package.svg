@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Куб (пакет, плагин).</title>
   <desc></desc>
-  <path d="M8 2.2l5 2.9v5.8l-5 2.9-5-2.9V5.1z"/>
+  <path d="M8 2.2L12.5 5.1V10.9L8 13.8L2.5 10.9V5.1Z"/>
 </svg>

@@ -2,5 +2,5 @@
      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <title>Глиф контрола ToolBar для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M2.5 4.8H13.5M3.8 7.6H6.6V10.4H3.8ZM9.4 7.6H12.2V10.4H9.4Z"/>
+  <path d="M2.5 4.5H13.5M3.5 7.5H6.5V10.5H3.5ZM9.5 7.5H12.5V10.5H9.5Z"/>
 </svg>
