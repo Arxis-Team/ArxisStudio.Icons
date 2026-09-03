@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Вилка-разъём: плагин.</title>
   <desc>Проект и файлы</desc>
-  <path d="M6.5 2.5V5.5M10.5 2.5V5.5M4.5 5.5H11.5V8.5A3 3 0 0 1 8.5 11.5H7.5A3 3 0 0 1 4.5 8.5ZM8.5 11.5V13.5"/>
+  <path d="M6.5 3V6M10.5 3V6M4.5 5.5H12.5V8.5A2 2 0 0 1 10.5 10.5H6.5A2 2 0 0 1 4.5 8.5ZM8.5 11V14"/>
 </svg>

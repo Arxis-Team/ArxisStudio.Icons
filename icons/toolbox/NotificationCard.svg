@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола NotificationCard для палитры дизайнера.</title>
   <desc>Прогресс, медиа, оверлеи</desc>
-  <path d="M2.5 4.5H13.5V11.5H2.5ZM4.5 4.5V11.5M7 6.5H11.5M7 8.5H10"/>
+  <path d="M3.5 4.5H13.5V12.5H3.5ZM5.5 5V12M7 7.5H12M7 9.5H11"/>
 </svg>

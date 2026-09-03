@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола ToolBar для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M2.5 4.5H13.5M3.5 7.5H6.5V10.5H3.5ZM9.5 7.5H12.5V10.5H9.5Z"/>
+  <path d="M3 4.5H14M3.5 7.5H6.5V10.5H3.5ZM10.5 7.5H13.5V10.5H10.5Z"/>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Корзина: удалить.</title>
   <desc>Действия</desc>
-  <path d="M3 4.5H13M6.5 4.5V3.5H9.5V4.5M4.6 4.5L5.2 12.5H10.8L11.4 4.5M6.5 7V10.6M8.5 7V10.6"/>
+  <path d="M4 4.5H13M6.5 4L6.5 3.5L10.5 3.5L10.5 4M4.5 5L4.5 13.5L12.5 13.5L12.5 5M7.5 7V12M9.5 7V12"/>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Развернуть всё дерево.</title>
   <desc>Раскрытие</desc>
-  <path d="M3.5 3.5H12.5M3.5 12.5H12.5M5.9 7.3L8 5.2L10.1 7.3M5.9 8.7L8 10.8L10.1 8.7"/>
+  <path d="M4 3.5H13M4 13.5H13M6.5 7.5L8.5 5.5L10.5 7.5M6.5 9.5L8.5 11.5L10.5 9.5"/>
 </svg>

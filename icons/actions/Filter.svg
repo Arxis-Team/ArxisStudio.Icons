@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Воронка: фильтр списка.</title>
   <desc>Поиск, списки, таблицы</desc>
-  <path d="M3 4.5H13L9.5 8.8V12.3L6.5 13.4V8.8Z"/>
+  <path d="M3.5 4.5L13.5 4.5L9.5 8.5L9.5 13.5L7.5 13.5L7.5 8.5Z"/>
 </svg>

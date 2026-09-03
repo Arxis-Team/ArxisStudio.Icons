@@ -87,10 +87,12 @@ public sealed class Sharpness
             }
             else
             {
+                // Тот же срез и стык, что в теме студии: мера снимается с того,
+                // что отгружается, а не с удобного.
                 context.DrawGeometry(null, new Pen(Brushes.White, stroke)
                 {
-                    LineCap = PenLineCap.Round,
-                    LineJoin = PenLineJoin.Round,
+                    LineCap = PenLineCap.Flat,
+                    LineJoin = PenLineJoin.Miter,
                 }, geometry);
             }
         }

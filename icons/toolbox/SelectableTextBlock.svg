@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола SelectableTextBlock для палитры дизайнера.</title>
   <desc>Ввод текста</desc>
-  <path d="M3 4.5H13M3 10.5H9M2.5 6.5H10.5V9.5H2.5Z"/>
+  <path d="M4 5.5H13M3.5 7.5H10.5V10.5H3.5ZM4 12.5H10"/>
 </svg>

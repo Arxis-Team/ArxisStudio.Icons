@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Линии сетки холста с привязкой.</title>
   <desc>Дизайнер форм</desc>
-  <path d="M2.5 6.5H13.5M2.5 10.5H13.5M6.5 2.5V13.5M10.5 2.5V13.5"/>
+  <path d="M3 6.5H14M3 10.5H14M6.5 3V14M10.5 3V14"/>
 </svg>

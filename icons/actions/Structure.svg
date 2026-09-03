@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Структура: иерархия элементов документа.</title>
   <desc>Проект и файлы</desc>
-  <path d="M2.5 3.5H13.5M5.5 8.5H13.5M8.5 12.5H13.5"/>
+  <path d="M3 4.5H14M6 8.5H14M9 12.5H14"/>
 </svg>

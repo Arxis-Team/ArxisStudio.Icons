@@ -31,8 +31,8 @@
                     Data="{TemplateBinding Data}"
                     Stroke="{TemplateBinding Foreground}"
                     StrokeThickness="{TemplateBinding StrokeThickness}"
-                    StrokeLineCap="Round"
-                    StrokeJoin="Round"/>
+                    StrokeLineCap="Flat"
+                    StrokeJoin="Miter"/>
             </Canvas>
           </Viewbox>
         </ControlTemplate>

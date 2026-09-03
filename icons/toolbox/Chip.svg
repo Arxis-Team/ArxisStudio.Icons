@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола Chip для палитры дизайнера.</title>
   <desc>Контролы студии</desc>
-  <path d="M5.4 5.5H10.6A2.5 2.5 0 0 1 10.6 10.5H5.4A2.5 2.5 0 0 1 5.4 5.5ZM7 8.5H9"/>
+  <path d="M6.5 5.5H10.5A3 3 0 0 1 10.5 11.5H6.5A3 3 0 0 1 6.5 5.5ZM7 8.5H10"/>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
-     stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Треугольник воспроизведения.</title>
   <desc></desc>
-  <path d="M6 4V12L12.5 8Z"/>
+  <path d="M6 4L12 8L6 12Z"/>
 </svg>

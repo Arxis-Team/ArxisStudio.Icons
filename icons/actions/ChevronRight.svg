@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Шеврон вправо.</title>
   <desc></desc>
-  <path d="M6 4.2L9.8 8L6 11.8"/>
+  <path d="M6.5 4.5L10.5 8.5L6.5 12.5"/>
 </svg>

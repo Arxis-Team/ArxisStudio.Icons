@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Диалог (чат, сообщество).</title>
   <desc></desc>
-  <path d="M2.5 4.5H12.5V10.5H8L4.5 13V10.5H2.5Z"/>
+  <path d="M3.5 3.5L13.5 3.5L13.5 10.5L8.5 10.5L5.5 13.5L5.5 10.5L3.5 10.5Z"/>
 </svg>

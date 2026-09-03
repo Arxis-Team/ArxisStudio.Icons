@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Карандаш: переименовать, изменить.</title>
   <desc>Действия</desc>
-  <path d="M10.7 2.8L13.2 5.3L5.8 12.5H3.5V10.2ZM9.2 4.3L11.7 6.8"/>
+  <path d="M11.5 3.5L13.5 5.5L6.5 12.5L4.5 12.5L4.5 10.5ZM9.5 5.5L11.5 7.5"/>
 </svg>

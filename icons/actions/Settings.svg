@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Ползунки настроек.</title>
   <desc></desc>
-  <path d="M3 4.5H13M3 10.5H13M7.9 5A1.7 1.7 0 1 1 4.5 5A1.7 1.7 0 0 1 7.9 5M11.5 11A1.7 1.7 0 1 1 8.1 11A1.7 1.7 0 0 1 11.5 11"/>
+  <path d="M4 5.5H13M4.5 5.5A2 2 0 1 1 8.5 5.5A2 2 0 1 1 4.5 5.5M4 11.5H13M8.5 11.5A2 2 0 1 1 12.5 11.5A2 2 0 1 1 8.5 11.5"/>
 </svg>

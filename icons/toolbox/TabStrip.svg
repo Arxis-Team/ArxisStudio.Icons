@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола TabStrip для палитры дизайнера.</title>
   <desc>Вкладки</desc>
-  <path d="M2.5 6.5H13.5V10.5H2.5ZM6.5 6V10M9.5 6V10M2.5 12.5H6.2"/>
+  <path d="M3.5 5.5H13.5V9.5H3.5ZM6.5 6V9M10.5 6V9M4 11.5H7"/>
 </svg>

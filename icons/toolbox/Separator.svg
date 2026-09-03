@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола Separator для палитры дизайнера.</title>
   <desc>Прокрутка и разделители</desc>
-  <path d="M2.5 8.5H6M7.2 8.5H8.8M10 8.5H13.5"/>
+  <path d="M3 8.5H7M8 8.5H9M10 8.5H14"/>
 </svg>

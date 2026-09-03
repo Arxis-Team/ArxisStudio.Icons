@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола SplitButton для палитры дизайнера.</title>
   <desc>Кнопки</desc>
-  <path d="M2.5 5.5H13.5V10.5H2.5ZM10.5 5.5V10.5M4.5 8.5H8M11.15 7.4L11.75 8L12.35 7.4"/>
+  <path d="M3.5 5.5H13.5V11.5H3.5ZM9.5 6V11M5 8.5H8M10.5 7.5L11.5 8.5L12.5 7.5"/>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола ToggleSwitch для палитры дизайнера.</title>
   <desc>Выбор</desc>
-  <path d="M4.6 5.5H9.4A2.5 2.5 0 0 1 9.4 10.5H4.6A2.5 2.5 0 0 1 4.6 5.5ZM8.2 8A1.2 1.2 0 1 1 10.6 8A1.2 1.2 0 1 1 8.2 8Z"/>
+  <path d="M6.5 5.5H10.5A3 3 0 0 1 10.5 11.5H6.5A3 3 0 0 1 6.5 5.5ZM9.5 8.5A1 1 0 1 1 11.5 8.5A1 1 0 1 1 9.5 8.5"/>
 </svg>

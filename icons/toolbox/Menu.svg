@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола Menu для палитры дизайнера.</title>
   <desc>Меню и всплывающие</desc>
-  <path d="M2.5 4.5H13.5V7.5H2.5ZM5.5 4.5V7.5M8.5 4.5V7.5M2.5 9.5H8.5V13.5H2.5Z"/>
+  <path d="M3.5 4.5H13.5V7.5H3.5ZM6.5 5V7M9.5 5V7M3.5 9.5H9.5V13.5H3.5Z"/>
 </svg>

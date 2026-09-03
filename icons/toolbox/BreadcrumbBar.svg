@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола BreadcrumbBar для палитры дизайнера.</title>
   <desc>Вкладки</desc>
-  <path d="M2.5 8.5H4.8M6 6.8L7.2 8L6 9.2M8.4 8.5H10.7M11.9 6.8L13.1 8L11.9 9.2"/>
+  <path d="M3 8.5H6M9 8.5H12M6.5 7.5L7.5 8.5L6.5 9.5M12.5 7.5L13.5 8.5L12.5 9.5"/>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола ToolTip для палитры дизайнера.</title>
   <desc>Меню и всплывающие</desc>
-  <path d="M3.5 5.5H12.5V9.5H3.5ZM6.5 9.5L7.5 11.3L8.5 9.5"/>
+  <path d="M4.5 5.5H12.5V9.5H4.5ZM6.5 9.5L8.5 11.5L10.5 9.5"/>
 </svg>

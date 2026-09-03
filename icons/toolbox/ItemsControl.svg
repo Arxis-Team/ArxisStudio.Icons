@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола ItemsControl для палитры дизайнера.</title>
   <desc>Списки и данные</desc>
-  <path d="M4.5 4.5H13.5M4.5 8.5H13.5M4.5 11.5H13.5M2.6 4.5H2.7M2.6 8.5H2.7M2.6 11.5H2.7"/>
+  <path d="M6 5.5H14M6 8.5H14M6 11.5H14M4 5.5H5M4 8.5H5M4 11.5H5"/>
 </svg>

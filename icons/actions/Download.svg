@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Стрелка загрузки.</title>
   <desc></desc>
-  <path d="M8.5 3V10M5 7.5L8 10.5L11 7.5M3.5 12.5H12.5"/>
+  <path d="M8.5 3V10M4 13.5H13M5.5 7.5L8.5 10.5L11.5 7.5"/>
 </svg>

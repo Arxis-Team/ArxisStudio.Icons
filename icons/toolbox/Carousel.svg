@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола Carousel для палитры дизайнера.</title>
   <desc>Списки и данные</desc>
-  <path d="M4.5 4.5H11.5V11.5H4.5ZM3.4 6.8L2.2 8L3.4 9.2M12.6 6.8L13.8 8L12.6 9.2"/>
+  <path d="M5.5 4.5H11.5V12.5H5.5ZM4.5 7.5L3.5 8.5L4.5 9.5M12.5 7.5L13.5 8.5L12.5 9.5"/>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Глиф контрола Expander для палитры дизайнера.</title>
   <desc>Контейнеры и компоновка</desc>
-  <path d="M2.5 3.5H13.5V6.5H2.5ZM4.4 4.6L5.15 5.35L5.9 4.6M2.5 9.5H13.5V12.5H2.5Z"/>
+  <path d="M3.5 3.5H13.5V6.5H3.5ZM3.5 9.5H13.5V13.5H3.5ZM4.5 4.5L5.5 5.5L6.5 4.5"/>
 </svg>

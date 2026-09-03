@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Крестик: закрыть, сбросить.</title>
   <desc></desc>
-  <path d="M4 4L12 12M12 4L4 12"/>
+  <path d="M4.5 4.5L12.5 12.5M12.5 4.5L4.5 12.5"/>
 </svg>

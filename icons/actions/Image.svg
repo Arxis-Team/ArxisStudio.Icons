@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Изображение.</title>
   <desc></desc>
-  <path d="M2.5 3.5H13.5V12.5H2.5ZM2.5 10L6 7L9 9.5L11 8L13.5 10"/>
+  <path d="M3.5 3.5H13.5V13.5H3.5ZM3.5 11.5L6.5 8.5L9.5 11.5L11.5 9.5L13.5 11.5M10 6.5H11"/>
 </svg>

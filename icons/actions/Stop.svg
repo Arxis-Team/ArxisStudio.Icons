@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
-     stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+     stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Квадрат: остановить. IsFilled.</title>
   <desc>Запуск и отладка</desc>
   <path d="M5 5H12V12H5Z"/>
