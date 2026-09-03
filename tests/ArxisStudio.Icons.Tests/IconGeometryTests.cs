@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Text.Json;
-using Avalonia;
 using Avalonia.Headless.XUnit;
 using Avalonia.Media;
 using Xunit;
@@ -8,65 +7,21 @@ using Xunit;
 namespace ArxisStudio.Icons.Tests;
 
 /// <summary>
-/// Форма каждой иконки против листа иконок дизайн-проекта.
+/// Состав набора против листа иконок дизайн-проекта.
 /// </summary>
 /// <remarks>
-/// Иконка — это данные, и расходятся они молча: путь на полпикселя левее
-/// глазом не виден, а в наборе из полутора сотен глифов не виден и подавно.
-/// Поэтому сверяются не подписи и не количество, а сама форма.
-///
-/// Дизайн-проект здесь якорь, а не эталон: форму задают файлы icons/, и они
-/// же поставлены на пиксельную сетку — той правки, которую сам дизайн-проект за
-/// собой и записал. Поэтому сверяется не совпадение штрих в штрих, а то, что
-/// рисунок не уехал дальше полупикселя: больше него — это уже другая иконка.
-///
-/// Строку пути в готовой <see cref="Geometry"/> уже не прочитать — Avalonia
-/// разбирает её в поток команд и текст не хранит. Зато форму можно снять
-/// отпечатком: габариты, габариты с обводкой 1.2 и решётка проб по всей
-/// клетке 16 × 16. Два пути, дающие один отпечаток, рисуют одно и то же —
-/// а записаны при этом могут быть по-разному, и это правильно: сверяется
-/// рисунок, а не то, каким текстом его записали.
+/// Дизайн-проект отвечает за состав набора, а не за геометрию: набор
+/// перерисован под пиксельную сетку целиком, и сверять форму с листом, который
+/// эту сетку не держал, значило бы сверять с тем, от чего ушли. Форму проверяют
+/// <c>IconSourceTests</c> — совпадение с файлом и правило сетки.
+/// <para>
+/// Состав же сверяется именно с листом: пропавшая иконка не падает ни в одной
+/// сборке, а лишняя не мешает никому — и обе видны только рядом со списком
+/// того, что задумано.
+/// </para>
 /// </remarks>
 public class IconGeometryTests
 {
-    /// <summary>Обводка набора: 1.2 из метрик, ею же меряются габариты.</summary>
-    private static readonly Pen Stroke = new(Brushes.Black, 1.2);
-
-    public static TheoryData<string, string> Icons
-    {
-        get
-        {
-            var data = new TheoryData<string, string>();
-
-            foreach (var (name, path) in Load().OrderBy(entry => entry.Key, StringComparer.Ordinal))
-                data.Add(name, path);
-
-            return data;
-        }
-    }
-
-    [AvaloniaTheory]
-    [MemberData(nameof(Icons))]
-    public void Icon_stays_within_half_a_pixel_of_the_design_project(string name, string path)
-    {
-        var expected = Geometry.Parse(path).Bounds;
-        var actual = Resolve(name).Bounds;
-
-        // Полпикселя — ровно тот запас, которым штрих ставится на сетку:
-        // больше него сдвиг означает уже другой рисунок, а не выравнивание.
-        Assert.All(
-            new[]
-            {
-                ("левый край", expected.Left, actual.Left),
-                ("правый край", expected.Right, actual.Right),
-                ("верх", expected.Top, actual.Top),
-                ("низ", expected.Bottom, actual.Bottom),
-            },
-            edge => Assert.True(
-                Math.Abs(edge.Item2 - edge.Item3) <= 0.5 + 1e-6,
-                $"{name}: {edge.Item1} уехал на {Math.Abs(edge.Item2 - edge.Item3):F2}"));
-    }
-
     /// <summary>Набор не растерял иконок и не завёл лишних.</summary>
     [AvaloniaFact]
     public void Set_holds_exactly_the_icons_of_the_design_project()
@@ -79,45 +34,6 @@ public class IconGeometryTests
 
         Assert.Equal(Load().Keys.OrderBy(name => name, StringComparer.Ordinal),
             declared.OrderBy(name => name, StringComparer.Ordinal));
-    }
-
-    /// <summary>
-    /// Снимает отпечаток формы: попадание в заливку по решётке с шагом 0.5.
-    /// </summary>
-    /// <remarks>
-    /// Шаг взят вдвое мельче полупиксельной сетки, на которой нарисован набор,
-    /// поэтому сдвиг любого узла пути отпечаток меняет. Проверка попадания в
-    /// обводку в headless-режиме не работает, и опираться на неё нельзя.
-    /// </remarks>
-    private static string Probe(Geometry geometry)
-    {
-        var hits = new System.Text.StringBuilder(33 * 33);
-
-        for (var y = 0d; y <= 16; y += 0.5)
-        {
-            for (var x = 0d; x <= 16; x += 0.5)
-                hits.Append(geometry.FillContains(new Point(x, y)) ? '#' : '.');
-        }
-
-        return hits.ToString();
-    }
-
-    /// <summary>Габариты с точностью до сотой: разбор пути даёт дробные числа.</summary>
-    private static Rect Round(Rect rect) => new(
-        Math.Round(rect.X, 2),
-        Math.Round(rect.Y, 2),
-        Math.Round(rect.Width, 2),
-        Math.Round(rect.Height, 2));
-
-    private static Geometry Resolve(string name)
-    {
-        foreach (var type in Sources())
-        {
-            if (type.GetProperty(name, BindingFlags.Public | BindingFlags.Static) is { } property)
-                return (Geometry)property.GetValue(null)!;
-        }
-
-        throw new ArgumentException($"в наборе нет иконки {name}");
     }
 
     /// <summary>Действия лежат в AxIcons, глифы палитры — во вложенном Toolbox.</summary>

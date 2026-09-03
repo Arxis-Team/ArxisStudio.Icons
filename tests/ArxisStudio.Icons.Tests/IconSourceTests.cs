@@ -15,7 +15,7 @@ namespace ArxisStudio.Icons.Tests;
 /// собирается из файлов генератором, и разойтись они могут молча — сборку
 /// собрали, файл поправили, а генератор не позвали.
 /// <para>
-/// Здесь же закреплено правило сетки, ради которого набор и переставляли.
+/// Здесь же закреплено правило сетки, ради которого набор перерисовали.
 /// Дизайн-проект записал его словами и сам же за собой не уследил: двадцать
 /// четыре пути были написаны до правила и под него не подгонялись. Правило,
 /// которое проверяет только внимание автора, — не правило.
@@ -81,6 +81,13 @@ public class IconSourceTests
     /// её середина стоит на x.5. Заливка кончается на самом пути, и ей нужна
     /// целая координата, иначе по контуру идёт полупрозрачный ореол.
     /// <para>
+    /// Срез штриха плоский, поэтому и его концы обязаны стоять на границе
+    /// пикселя — на целом вдоль штриха. Иначе последний пиксель закрашен
+    /// наполовину: это и есть хвост, который прежде тянул за собой скруглённый
+    /// срез. Конец, упирающийся в другой штрих, от правила свободен — его
+    /// пиксель закрыт тем штрихом.
+    /// </para>
+    /// <para>
     /// Точка, которой путь входит в дугу или кривую, из правила выведена: она
     /// держит касание, и сдвинуть её значит сломать окружность. Таких мест
     /// немного, и каждое — сознательный обмен резкости на форму.
@@ -93,8 +100,9 @@ public class IconSourceTests
         var text = File.ReadAllText(System.IO.Path.Combine(Root(), family, name + ".svg"));
         var filled = !text.Contains("fill=\"none\"", StringComparison.Ordinal);
         var commands = Commands(Data(text));
+        var straight = Straight(commands).ToList();
 
-        Assert.All(Straight(commands), segment =>
+        Assert.All(straight, segment =>
         {
             var (from, to, locked) = segment;
 
@@ -113,6 +121,25 @@ public class IconSourceTests
             Assert.True(
                 Math.Abs(value - wanted) < 1e-6,
                 string.Create(CultureInfo.InvariantCulture, $"{name}: {Grid}, а стоит на {value}"));
+        });
+
+        if (filled)
+            return;
+
+        // Свободные концы: вдоль штриха — на целом, то есть на границе пикселя.
+        // Полупиксель разрешён только концу, который упирается в другой штрих:
+        // его пиксель закрыт тем штрихом, и хвоста не будет.
+        var segments = straight.Select(segment => (segment.From, segment.To)).ToList();
+
+        Assert.All(Ends(commands), end =>
+        {
+            var (point, own, along) = end;
+            var onGrid = Math.Abs(along - Math.Round(along)) < 1e-6;
+
+            Assert.True(
+                onGrid || Touches(point, own, segments),
+                string.Create(CultureInfo.InvariantCulture,
+                    $"{name}: конец штриха в ({point.X}, {point.Y}) стоит на полупикселе и ни во что не упирается"));
         });
     }
 
@@ -196,6 +223,82 @@ public class IconSourceTests
             yield return ((previous.X, previous.Y), (x, y), locked);
         }
     }
+
+    /// <summary>Концы открытых осевых штрихов и координата вдоль штриха у каждого.</summary>
+    /// <remarks>
+    /// Подпуть, закрытый <c>Z</c>, концов не имеет: его точка <c>M</c> — такой же
+    /// угол, как остальные. Считать её концом значило бы спрашивать с каждой
+    /// рамки то, что спрашивают только с открытого штриха.
+    /// </remarks>
+    private static IEnumerable<((double X, double Y) Point, (double X, double Y) Own, double Along)> Ends(
+        List<(char Letter, double X, double Y)> commands)
+    {
+        var start = 0;
+
+        for (var at = 1; at <= commands.Count; at++)
+        {
+            var boundary = at == commands.Count || commands[at].Letter is 'M' or 'Z';
+
+            if (!boundary)
+                continue;
+
+            // [start, at) — один подпуть; at стоит на следующем M, на Z или за концом.
+            var closed = at < commands.Count && commands[at].Letter == 'Z';
+            var last = at - 1;
+
+            if (!closed && last > start)
+            {
+                foreach (var (point, next) in new[] { (start, start + 1), (last, last - 1) })
+                {
+                    var (letter, x, y) = commands[point];
+                    var other = commands[next];
+
+                    if (letter is not ('M' or 'L' or 'H' or 'V') || other.Letter is not ('M' or 'L' or 'H' or 'V'))
+                        continue;
+
+                    var horizontal = Math.Abs(other.Y - y) < 1e-6 && Math.Abs(other.X - x) > 1e-6;
+                    var vertical = Math.Abs(other.X - x) < 1e-6 && Math.Abs(other.Y - y) > 1e-6;
+
+                    if (horizontal)
+                        yield return ((x, y), (other.X, other.Y), x);
+                    else if (vertical)
+                        yield return ((x, y), (other.X, other.Y), y);
+                }
+            }
+
+            start = closed ? at + 1 : at;
+        }
+    }
+
+    /// <summary>Лежит ли точка на каком-нибудь прямом отрезке, кроме своего собственного.</summary>
+    /// <remarks>
+    /// Не в счёт только собственный отрезок — тот, что и кончается в этой точке.
+    /// Чужой отрезок, кончающийся здесь же, закрывает пиксель: угол рамки — такая
+    /// же опора для конца штриха, как её сторона.
+    /// </remarks>
+    private static bool Touches(
+        (double X, double Y) point,
+        (double X, double Y) own,
+        List<((double X, double Y) From, (double X, double Y) To)> segments)
+    {
+        foreach (var (from, to) in segments)
+        {
+            if ((Same(from, point) && Same(to, own)) || (Same(to, point) && Same(from, own)))
+                continue;
+
+            var cross = ((to.X - from.X) * (point.Y - from.Y)) - ((to.Y - from.Y) * (point.X - from.X));
+            var inside = point.X >= Math.Min(from.X, to.X) - 1e-6 && point.X <= Math.Max(from.X, to.X) + 1e-6
+                && point.Y >= Math.Min(from.Y, to.Y) - 1e-6 && point.Y <= Math.Max(from.Y, to.Y) + 1e-6;
+
+            if (Math.Abs(cross) < 1e-6 && inside)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool Same((double X, double Y) a, (double X, double Y) b) =>
+        Math.Abs(a.X - b.X) < 1e-6 && Math.Abs(a.Y - b.Y) < 1e-6;
 
     private static string Data(string svg) =>
         Regex.Match(svg, @"<path d=""([^""]+)""").Groups[1].Value;
