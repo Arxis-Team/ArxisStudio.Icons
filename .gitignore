@@ -70,3 +70,6 @@ artifacts/
 # кроме личных переопределений.
 .claude/settings.local.json
 artifacts/
+
+## --- PYTHON ---
+__pycache__/
