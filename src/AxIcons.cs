@@ -188,7 +188,7 @@ public static class AxIcons
     public static Geometry ThemeDark { get; } = P("M8.5 3.5A4 4 0 0 0 13.5 8.5A5 5 0 1 1 8.5 3.5Z");
 
     /// <summary>Солнце: светлая тема.</summary>
-    public static Geometry ThemeLight { get; } = P("M6.5 8.5A2 2 0 1 1 10.5 8.5A2 2 0 1 1 6.5 8.5M8.5 3V5M4.5 4.5L5.5 5.5M10.5 8.5A2 2 0 1 0 6.5 8.5A2 2 0 1 0 10.5 8.5M8.5 3V5M12.5 4.5L11.5 5.5M6.5 8.5A2 2 0 1 0 10.5 8.5A2 2 0 1 0 6.5 8.5M8.5 14V12M4.5 12.5L5.5 11.5M10.5 8.5A2 2 0 1 1 6.5 8.5A2 2 0 1 1 10.5 8.5M8.5 14V12M12.5 12.5L11.5 11.5");
+    public static Geometry ThemeLight { get; } = P("M4.5 4.5L5.5 5.5M12.5 4.5L11.5 5.5M4.5 12.5L5.5 11.5M12.5 12.5L11.5 11.5M8.5 3V5M8.5 12V14M3 8.5H5M12 8.5H14M6.5 8.5A2 2 0 1 1 10.5 8.5A2 2 0 1 1 6.5 8.5");
 
     /// <summary>Пользователь.</summary>
     public static Geometry User { get; } = P("M6.5 6.5A2 2 0 1 1 10.5 6.5A2 2 0 1 1 6.5 6.5M4.5 14V13.5A4 4 0 0 1 12.5 13.5V14");
