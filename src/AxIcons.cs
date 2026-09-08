@@ -153,7 +153,7 @@ public static class AxIcons
 
     // Запуск и отладка
     /// <summary>Жук: отладка.</summary>
-    public static Geometry Debug { get; } = P("M6.5 7.5H10.5V10.5A2 2 0 0 1 8.5 12.5A2 2 0 0 1 6.5 10.5ZM6.5 4.5L7.5 5.5M3 8.5H6M5.5 11.5L4.5 12.5M10.5 7.5H6.5V10.5A2 2 0 0 0 8.5 12.5A2 2 0 0 0 10.5 10.5ZM10.5 4.5L9.5 5.5M14 8.5H11M11.5 11.5L12.5 12.5");
+    public static Geometry Debug { get; } = P("M6.5 4.5L7.5 5.5M3 8.5H6M5.5 11.5L4.5 12.5M10.5 4.5L9.5 5.5M14 8.5H11M11.5 11.5L12.5 12.5M6.5 7.5H10.5V10.5A2 2 0 0 1 8.5 12.5A2 2 0 0 1 6.5 10.5Z");
 
     /// <summary>Молния по кругу: горячая перезагрузка.</summary>
     public static Geometry HotReload { get; } = P("M9.5 3.5L5.5 8.5L8.5 8.5L7.5 13.5L11.5 8.5L8.5 8.5Z");
