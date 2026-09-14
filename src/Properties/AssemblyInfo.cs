@@ -1,4 +1,8 @@
+using System.Runtime.CompilerServices;
 using Avalonia.Metadata;
+
+// Правило толщины обводки — чистая функция, и проверяется оно без отрисовки.
+[assembly: InternalsVisibleTo("ArxisStudio.Icons.Tests")]
 
 // Тот же словарь разметки, что и у остальных библиотек ArxisStudio: набор
 // иконок живёт отдельным репозиторием, но в разметке стоит рядом с контролами,
