@@ -55,22 +55,55 @@ public class IconSourceTests
     [AvaloniaFact]
     public void The_files_and_the_assembly_hold_the_same_set()
     {
-        foreach (var (family, type) in new[] { ("actions", typeof(AxIcons)), ("toolbox", typeof(AxIcons.Toolbox)) })
-        {
-            var built = type
-                .GetProperties(BindingFlags.Public | BindingFlags.Static)
-                .Where(property => property.PropertyType == typeof(Geometry))
-                .Select(property => property.Name)
-                .Order(StringComparer.Ordinal);
+        var built = typeof(AxIcons)
+            .GetProperties(BindingFlags.Public | BindingFlags.Static)
+            .Where(property => property.PropertyType == typeof(Geometry))
+            .Select(property => property.Name)
+            .Order(StringComparer.Ordinal);
 
-            var files = Directory
-                .EnumerateFiles(System.IO.Path.Combine(Root(), family), "*.svg")
-                .Select(System.IO.Path.GetFileNameWithoutExtension)
-                .OfType<string>()
-                .Order(StringComparer.Ordinal);
+        var files = Directory
+            .EnumerateFiles(System.IO.Path.Combine(Root(), "actions"), "*.svg")
+            .Select(System.IO.Path.GetFileNameWithoutExtension)
+            .OfType<string>()
+            .Order(StringComparer.Ordinal);
 
-            Assert.Equal(files, built);
-        }
+        Assert.Equal(files, built);
+    }
+
+    /// <summary>
+    /// Путь набора разбирается при первом обращении к иконке, а не при загрузке набора.
+    /// </summary>
+    /// <remarks>
+    /// Экрану нужны единицы иконок, и разбор всего набора до первого кадра — лишняя работа на
+    /// старте. Спрашивается собранный код, а не живой тип: какие иконки уже тронули соседние тесты,
+    /// в одном процессе не узнать, а то, как объявлен геттер, видно всегда.
+    /// </remarks>
+    [Fact]
+    public void Every_icon_is_parsed_on_first_use()
+    {
+        var code = File.ReadAllText(System.IO.Path.Combine(Root(), "..", "src", "AxIcons.cs"));
+        var getters = Regex.Matches(code, @"public static Geometry (\w+) (.*)$", RegexOptions.Multiline);
+
+        Assert.NotEmpty(getters);
+        Assert.All(getters, getter => Assert.Matches(@"^\{ get => field \?\?= (Filled\()?P\(""", getter.Groups[2].Value));
+    }
+
+    /// <summary>
+    /// Иконка, нарисованная в файле силуэтом, заливается сама — без слова автора.
+    /// </summary>
+    /// <remarks>
+    /// Прежде заливку помнил тот, кто ставил иконку, и пять силуэтов набора стояли в студии
+    /// обведёнными: треугольник запуска и три точки меню читались контуром.
+    /// </remarks>
+    [AvaloniaTheory]
+    [MemberData(nameof(Files))]
+    public void An_icon_drawn_as_a_silhouette_is_filled_by_itself(string family, string name)
+    {
+        var text = File.ReadAllText(System.IO.Path.Combine(Root(), family, name + ".svg"));
+        var silhouette = Regex.Match(text, @"<svg[^>]*\sfill=""([^""]+)""").Groups[1].Value != "none";
+        var icon = new AxIcon { Data = Resolve(family, name) };
+
+        Assert.Equal(silhouette, icon.Classes.Contains(":filled"));
     }
 
     /// <summary>
@@ -303,12 +336,8 @@ public class IconSourceTests
     private static string Data(string svg) =>
         Regex.Match(svg, @"<path d=""([^""]+)""").Groups[1].Value;
 
-    private static Geometry Resolve(string family, string name)
-    {
-        var type = family == "actions" ? typeof(AxIcons) : typeof(AxIcons.Toolbox);
-
-        return (Geometry)type.GetProperty(name, BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!;
-    }
+    private static Geometry Resolve(string family, string name) =>
+        (Geometry)typeof(AxIcons).GetProperty(name, BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!;
 
     private static Avalonia.Rect Round(Avalonia.Rect rect) => new(
         Math.Round(rect.X, 3),
@@ -318,11 +347,8 @@ public class IconSourceTests
 
     private static IEnumerable<(string Family, string Name, string File)> Icons()
     {
-        foreach (var family in new[] { "actions", "toolbox" })
-        {
-            foreach (var file in Directory.EnumerateFiles(System.IO.Path.Combine(Root(), family), "*.svg").Order(StringComparer.Ordinal))
-                yield return (family, System.IO.Path.GetFileNameWithoutExtension(file), file);
-        }
+        foreach (var file in Directory.EnumerateFiles(System.IO.Path.Combine(Root(), "actions"), "*.svg").Order(StringComparer.Ordinal))
+            yield return ("actions", System.IO.Path.GetFileNameWithoutExtension(file), file);
     }
 
     /// <summary>Папка набора: над ней лежит решение.</summary>

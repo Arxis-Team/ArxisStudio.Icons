@@ -162,7 +162,7 @@ def main():
     changed = 0
     total = 0
 
-    for family in ('actions', 'toolbox'):
+    for family in ('actions',):
         folder = os.path.join(ICONS, family)
 
         for name in sorted(os.listdir(folder)):

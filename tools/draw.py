@@ -52,7 +52,7 @@ def main():
 
     known = set()
 
-    for family in ('actions', 'toolbox'):
+    for family in ('actions',):
         for name in os.listdir(os.path.join(ICONS, family)):
             if name.endswith('.svg'):
                 known.add(family + '/' + name[:-4])

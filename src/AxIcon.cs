@@ -1,10 +1,21 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 
 namespace ArxisStudio.Icons;
+
+/// <summary>Размер иконки.</summary>
+public enum AxIconSize
+{
+    /// <summary>Клетка набора, 16: иконка кнопки, строки, вкладки.</summary>
+    Normal,
+
+    /// <summary>Мелкая: шеврон в тесной строке, крестик внутри поля.</summary>
+    Small,
+}
 
 /// <summary>
 /// Контурная иконка студии: SVG-путь в системе координат 16×16, обведённый
@@ -28,7 +39,15 @@ namespace ArxisStudio.Icons;
 /// на четверти пикселя, и никакая толщина их не соберёт, а округлённая только
 /// меняет вес. Резкость там даст лишь набор, нарисованный под свою сетку.
 /// </para>
+/// <para>
+/// Силуэт или контур решает путь, а не автор: иконку набора, нарисованную силуэтом,
+/// контрол заливает сам — тема видит это псевдоклассом <c>:filled</c>. Свой путь плагин
+/// заливает свойством <see cref="IsFilled"/>. Прежде заливку помнил автор, и пять силуэтов
+/// набора стояли в студии обведёнными.
+/// </para>
 /// </remarks>
+[TemplatePart("PART_Path", typeof(Shape))]
+[PseudoClasses(":filled", ":small")]
 public class AxIcon : TemplatedControl
 {
     /// <summary>Геометрия пути в координатах 16×16.</summary>
@@ -39,9 +58,13 @@ public class AxIcon : TemplatedControl
     public static readonly StyledProperty<double> StrokeThicknessProperty =
         AvaloniaProperty.Register<AxIcon, double>(nameof(StrokeThickness), 1.2);
 
-    /// <summary>Заливать путь вместо обводки (play, stop, пауза).</summary>
+    /// <summary>Заливать свой путь вместо обводки; силуэты набора заливаются и без этого.</summary>
     public static readonly StyledProperty<bool> IsFilledProperty =
         AvaloniaProperty.Register<AxIcon, bool>(nameof(IsFilled));
+
+    /// <summary>Размер иконки.</summary>
+    public static readonly StyledProperty<AxIconSize> SizeProperty =
+        AvaloniaProperty.Register<AxIcon, AxIconSize>(nameof(Size));
 
     /// <summary>Сторона клетки, в которой нарисованы пути.</summary>
     private const double Grid = 16;
@@ -59,6 +82,11 @@ public class AxIcon : TemplatedControl
 
         StrokeThicknessProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.Snap());
         BoundsProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.Snap());
+
+        DataProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.MarkFilled());
+        IsFilledProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.MarkFilled());
+        SizeProperty.Changed.AddClassHandler<AxIcon>((icon, change) =>
+            icon.PseudoClasses.Set(":small", change.GetNewValue<AxIconSize>() == AxIconSize.Small));
     }
 
     /// <summary>Заводит иконку без пути: его дают свойством <see cref="Data"/>.</summary>
@@ -106,6 +134,13 @@ public class AxIcon : TemplatedControl
         set => SetValue(IsFilledProperty, value);
     }
 
+    /// <inheritdoc cref="SizeProperty"/>
+    public AxIconSize Size
+    {
+        get => GetValue(SizeProperty);
+        set => SetValue(SizeProperty, value);
+    }
+
     /// <summary>
     /// Толщина обводки в клетках сетки, сведённая к пикселям экрана там, где это делает контур резким.
     /// </summary>
@@ -134,6 +169,8 @@ public class AxIcon : TemplatedControl
     }
 
     private void OnScalingChanged(object? sender, EventArgs e) => Snap();
+
+    private void MarkFilled() => PseudoClasses.Set(":filled", IsFilled || AxIcons.IsFilled(Data));
 
     private void Snap()
     {

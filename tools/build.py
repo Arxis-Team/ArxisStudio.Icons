@@ -5,8 +5,13 @@
 AxIcons.cs — производная, и правится не руками, а этим скриптом.
 
 Переписывается только размеченная область; всё, что вокруг, — заголовок,
-пояснения, вложенный класс — остаётся на месте. Так проза живёт там, где её
+пояснения, реестр заливки — остаётся на месте. Так проза живёт там, где её
 читают, а не в шаблоне генератора.
+
+Геттер разбирает путь при первом обращении, а не при загрузке типа: набор
+целиком — десятки разборов до первого кадра, а экрану нужны единицы. Иконка,
+нарисованная силуэтом (fill="currentColor" в файле), встаёт в реестр заливки,
+и AxIcon зальёт её сам — автору не нужно помнить, какие пути в наборе силуэты.
 
     python tools/build.py
 
@@ -26,6 +31,7 @@ OPEN = '// <иконки:{family}> — собрано tools/build.py из icons/
 CLOSE = '// </иконки:{family}>'
 
 PATH = re.compile(r'<path d="(?P<path>[^"]+)"', re.S)
+FILL = re.compile(r'<svg[^>]*\sfill="(?P<fill>[^"]+)"', re.S)
 TITLE = re.compile(r'<title>(?P<title>.*?)</title>', re.S)
 DESC = re.compile(r'<desc>(?P<desc>.*?)</desc>', re.S)
 
@@ -35,7 +41,7 @@ def unescape(text):
 
 
 def read(family):
-    """Читает семейство: имя, подпись, группа, путь."""
+    """Читает семейство: имя, подпись, группа, путь, силуэт ли."""
     folder = os.path.join(ICONS, family)
     found = []
 
@@ -50,6 +56,7 @@ def read(family):
             'title': unescape(TITLE.search(text).group('title').strip()),
             'group': unescape(DESC.search(text).group('desc').strip()) if DESC.search(text) else '',
             'path': unescape(PATH.search(text).group('path').strip()),
+            'filled': FILL.search(text).group('fill') != 'none',
         })
 
     return sorted(found, key=lambda icon: (icon['group'], icon['name']))
@@ -69,8 +76,13 @@ def render(icons, indent):
                 lines.append('')
                 lines.append(pad + '// ' + group)
 
+        parsed = 'P("' + icon['path'] + '")'
+
+        if icon['filled']:
+            parsed = 'Filled(' + parsed + ')'
+
         lines.append(pad + '/// <summary>' + icon['title'] + '</summary>')
-        lines.append(pad + 'public static Geometry ' + icon['name'] + ' { get; } = P("' + icon['path'] + '");')
+        lines.append(pad + 'public static Geometry ' + icon['name'] + ' { get => field ??= ' + parsed + '; }')
         lines.append('')
 
     while lines and not lines[0]:
@@ -105,11 +117,10 @@ def main():
     text = io.open(TARGET, encoding='utf-8-sig').read().replace('\r\n', '\n')
 
     text = replace(text, 'actions', 4)
-    text = replace(text, 'toolbox', 8)
 
     io.open(TARGET, 'w', encoding='utf-8', newline='\r\n').write(text)
 
-    print('собрано:', sum(len(read(family)) for family in ('actions', 'toolbox')))
+    print('собрано:', len(read('actions')))
 
 
 main()

@@ -35,14 +35,13 @@ public static class Catalogue
     private static readonly Regex Desc = new(@"<desc>(?<value>.*?)</desc>", RegexOptions.Singleline);
     private static readonly Regex Fill = new(@"fill=""(?<value>[^""]+)""");
 
-    /// <summary>Собирает набор: сначала действия, потом глифы палитры.</summary>
+    /// <summary>Собирает набор.</summary>
     public static IReadOnlyList<Icon> Load()
     {
         var root = Icons();
         var found = new List<Icon>();
 
         found.AddRange(Family(typeof(AxIcons), "actions", "Действия и объекты", root));
-        found.AddRange(Family(typeof(AxIcons.Toolbox), "toolbox", "Глифы палитры", root));
 
         return found;
     }
