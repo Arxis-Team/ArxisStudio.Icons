@@ -17,12 +17,4 @@
         <ProjectReference Include="../../src/ArxisStudio.Icons.csproj"/>
     </ItemGroup>
 
-    <!--
-        Лист иконок дизайн-проекта едет в сборке тестов: сверка должна работать
-        и там, где самого дизайн-проекта рядом нет.
-    -->
-    <ItemGroup>
-        <EmbeddedResource Include="design-icons.json"/>
-    </ItemGroup>
-
 </Project>

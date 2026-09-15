@@ -35,7 +35,7 @@ public class AxIcon : TemplatedControl
     public static readonly StyledProperty<Geometry?> DataProperty =
         AvaloniaProperty.Register<AxIcon, Geometry?>(nameof(Data));
 
-    /// <summary>Толщина обводки; по умолчанию 1.2 — как в дизайн-спецификации.</summary>
+    /// <summary>Толщина обводки в клетках сетки; по умолчанию 1.2 — вес, под который нарисован набор.</summary>
     public static readonly StyledProperty<double> StrokeThicknessProperty =
         AvaloniaProperty.Register<AxIcon, double>(nameof(StrokeThickness), 1.2);
 
