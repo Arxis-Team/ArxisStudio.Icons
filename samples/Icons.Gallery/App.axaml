@@ -25,10 +25,15 @@
       <Setter Property="Foreground" Value="#DFE1E5"/>
       <Setter Property="Template">
         <ControlTemplate>
-          <Viewbox Stretch="Uniform">
-            <Canvas Width="16" Height="16">
+          <!--
+              Клетку и путь называет сам контрол: набор нарисован в восьми клетках, и показывать
+              витрина обязана ту, которую возьмёт экран. Округление раскладки внутри рамки
+              выключено — клетка живёт в своих координатах, а округляется по масштабу окна.
+          -->
+          <Viewbox Stretch="Uniform" UseLayoutRounding="False">
+            <Canvas Width="{TemplateBinding Cell}" Height="{TemplateBinding Cell}">
               <Path x:Name="PART_Path"
-                    Data="{TemplateBinding Data}"
+                    Data="{TemplateBinding Shown}"
                     Stroke="{TemplateBinding Foreground}"
                     StrokeThickness="{TemplateBinding StrokeThickness}"
                     StrokeLineCap="Flat"
