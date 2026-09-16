@@ -35,9 +35,14 @@ public enum AxIconSize
 /// <para>
 /// Одна клетка на пиксель — масштаб, под который набор нарисован, — и там обводка
 /// остаётся заданной: кромка в десятую пикселя у 1.2 и есть задуманный вес.
-/// Дробные масштабы — 125, 150, 175% — правило не трогает: полуклетки ложатся там
-/// на четверти пикселя, и никакая толщина их не соберёт, а округлённая только
-/// меняет вес. Резкость там даст лишь набор, нарисованный под свою сетку.
+/// </para>
+/// <para>
+/// На дробных масштабах толщина не спасает: полуклетки ложатся там на четверти пикселя, и ядра у
+/// штриха не остаётся вовсе — замером по всему набору доля пикселей, закрашенных целиком, падала с
+/// 54 % при 100 % до 28 % при 125 %. Резкость там даёт только своя клетка: значок в шестнадцать
+/// точек занимает при 125, 150 и 175 % ровно 20, 24 и 28 пикселей, и набор нарисован в этих
+/// клетках тоже. Контрол берёт путь по числу пикселей, которое занял сам, и ставит шаблону клетку,
+/// в которой тот путь нарисован: после пересчёта доля сплошных — 53, 53 и 52 %.
 /// </para>
 /// <para>
 /// Силуэт или контур решает путь, а не автор: иконку набора, нарисованную силуэтом,
@@ -66,11 +71,30 @@ public class AxIcon : TemplatedControl
     public static readonly StyledProperty<AxIconSize> SizeProperty =
         AvaloniaProperty.Register<AxIcon, AxIconSize>(nameof(Size));
 
+    /// <summary>
+    /// Путь, который сейчас на экране: <see cref="Data"/> или его пересчёт под клетку масштаба.
+    /// </summary>
+    /// <remarks>Ставит контрол, читает шаблон: рисовать надо тот путь, что выбран под этот экран.</remarks>
+    public static readonly DirectProperty<AxIcon, Geometry?> ShownProperty =
+        AvaloniaProperty.RegisterDirect<AxIcon, Geometry?>(nameof(Shown), icon => icon.Shown);
+
+    /// <summary>
+    /// Сторона клетки, в которой нарисован показанный путь.
+    /// </summary>
+    /// <remarks>
+    /// Шестнадцать у набора и у чужого пути; 20, 24 или 28 — когда взят пересчёт. Шаблон вписывает
+    /// в рамку клетку, а не чернила: иначе каждый глиф раздувался бы до краёв своим множителем.
+    /// </remarks>
+    public static readonly DirectProperty<AxIcon, double> CellProperty =
+        AvaloniaProperty.RegisterDirect<AxIcon, double>(nameof(Cell), icon => icon.Cell);
+
     /// <summary>Сторона клетки, в которой нарисованы пути.</summary>
     private const double Grid = 16;
 
     private Shape? _path;
     private TopLevel? _window;
+    private Geometry? _shown;
+    private double _cell = Grid;
 
     static AxIcon()
     {
@@ -83,7 +107,11 @@ public class AxIcon : TemplatedControl
         StrokeThicknessProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.Snap());
         BoundsProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.Snap());
 
-        DataProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.MarkFilled());
+        DataProperty.Changed.AddClassHandler<AxIcon>((icon, _) =>
+        {
+            icon.MarkFilled();
+            icon.Snap();
+        });
         IsFilledProperty.Changed.AddClassHandler<AxIcon>((icon, _) => icon.MarkFilled());
         SizeProperty.Changed.AddClassHandler<AxIcon>((icon, change) =>
             icon.PseudoClasses.Set(":small", change.GetNewValue<AxIconSize>() == AxIconSize.Small));
@@ -141,6 +169,20 @@ public class AxIcon : TemplatedControl
         set => SetValue(SizeProperty, value);
     }
 
+    /// <inheritdoc cref="ShownProperty"/>
+    public Geometry? Shown
+    {
+        get => _shown;
+        private set => SetAndRaise(ShownProperty, ref _shown, value);
+    }
+
+    /// <inheritdoc cref="CellProperty"/>
+    public double Cell
+    {
+        get => _cell;
+        private set => SetAndRaise(CellProperty, ref _cell, value);
+    }
+
     /// <summary>
     /// Толщина обводки в клетках сетки, сведённая к пикселям экрана там, где это делает контур резким.
     /// </summary>
@@ -174,15 +216,26 @@ public class AxIcon : TemplatedControl
 
     private void Snap()
     {
-        if (_path is null)
-            return;
-
         // Путь вписан в рамку с сохранением пропорций, поэтому клетку задаёт
         // меньшая сторона. Толщина ставится пути, а не свойству: заданная остаётся
         // той, что назвал хозяин, и сводится заново при каждом размере и масштабе.
         var scaling = _window?.RenderScaling ?? TopLevel.GetTopLevel(this)?.RenderScaling ?? 1;
-        var pixels = Math.Min(Bounds.Width, Bounds.Height) / Grid * scaling;
+        var side = Math.Min(Bounds.Width, Bounds.Height) * scaling;
+        var cell = Math.Round(side);
 
-        _path.StrokeThickness = Rendered(StrokeThickness, pixels);
+        // Пересчёт берётся, только когда значок занял целое число пикселей: у дробной стороны
+        // сетки нет никакой, и своя клетка ей не поможет.
+        var fitted = Math.Abs(side - cell) < 0.01 ? AxIcons.Fitted(Data, (int)cell) : null;
+
+        Shown = fitted ?? Data;
+        Cell = fitted is null ? Grid : cell;
+
+        if (_path is null)
+            return;
+
+        // В своей клетке единица равна пикселю, и резкой там будет нечётная толщина: штрих
+        // остаётся в один пиксель — тот же волосок, что и при 100 %, где заданные 1.2 ложатся
+        // ровно в пиксель. Толще он становится только на двухпиксельной клетке — это уже 200 %.
+        _path.StrokeThickness = fitted is null ? Rendered(StrokeThickness, side / Grid) : 1;
     }
 }

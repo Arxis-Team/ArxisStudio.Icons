@@ -13,6 +13,13 @@ AxIcons.cs — производная, и правится не руками, а
 нарисованная силуэтом (fill="currentColor" в файле), встаёт в реестр заливки,
 и AxIcon зальёт её сам — автору не нужно помнить, какие пути в наборе силуэты.
 
+Рядом с путём клетки 16 идут пути остальных клеток набора — те же линии,
+пересчитанные под размеры, которые значок занимает на разных масштабах экрана
+(tools/fit.py). В клетке 16 единица занимает при 125 % 1.25 пикселя, оси штрихов
+оказываются на четверти пикселя, и ядра у штриха нет вовсе; в своей клетке единица
+снова равна пикселю. Разбираются эти пути так же лениво и только той клеткой,
+которая сейчас на экране.
+
     python tools/build.py
 
 Порядок внутри семейства — по группе, потом по имени: он должен быть
@@ -29,6 +36,8 @@ ICONS = os.path.join(ROOT, 'icons')
 
 OPEN = '// <иконки:{family}> — собрано tools/build.py из icons/{family}, руками не править'
 CLOSE = '// </иконки:{family}>'
+
+import fit
 
 PATH = re.compile(r'<path d="(?P<path>[^"]+)"', re.S)
 FILL = re.compile(r'<svg[^>]*\sfill="(?P<fill>[^"]+)"', re.S)
@@ -76,13 +85,19 @@ def render(icons, indent):
                 lines.append('')
                 lines.append(pad + '// ' + group)
 
-        parsed = 'P("' + icon['path'] + '")'
-
-        if icon['filled']:
-            parsed = 'Filled(' + parsed + ')'
+        head = pad + 'public static Geometry ' + icon['name'] + ' { get => field ??= '
+        call = 'Filled(P(' if icon['filled'] else 'P('
+        tail = '); }' if icon['filled'] else '; }'
+        fitted = [fit.fit(icon['path'], cell) for cell in fit.CELLS]
 
         lines.append(pad + '/// <summary>' + icon['title'] + '</summary>')
-        lines.append(pad + 'public static Geometry ' + icon['name'] + ' { get => field ??= ' + parsed + '; }')
+        lines.append(head + call + '"' + icon['path'] + '",')
+        lines.append(pad + '    [')
+
+        for at, path in enumerate(fitted):
+            lines.append(pad + '        "' + path + '"' + (',' if at + 1 < len(fitted) else ''))
+
+        lines.append(pad + '    ])' + tail)
         lines.append('')
 
     while lines and not lines[0]:

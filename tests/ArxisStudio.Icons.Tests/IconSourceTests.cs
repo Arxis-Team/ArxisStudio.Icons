@@ -38,6 +38,23 @@ public class IconSourceTests
         }
     }
 
+    /// <summary>Иконка и клетка, в которую её пересчитали.</summary>
+    public static TheoryData<string, string, int> Fitted
+    {
+        get
+        {
+            var data = new TheoryData<string, string, int>();
+
+            foreach (var (family, name, _) in Icons())
+            {
+                foreach (var cell in AxIcons.Sizing)
+                    data.Add(family, name, cell);
+            }
+
+            return data;
+        }
+    }
+
     /// <summary>Что нарисовано в файле, то и лежит в сборке.</summary>
     [AvaloniaTheory]
     [MemberData(nameof(Files))]
@@ -174,6 +191,96 @@ public class IconSourceTests
                 string.Create(CultureInfo.InvariantCulture,
                     $"{name}: конец штриха в ({point.X}, {point.Y}) стоит на полупикселе и ни во что не упирается"));
         });
+    }
+
+    /// <summary>
+    /// Пересчитанный под клетку путь стоит на её сетке так же, как исходный — на своей.
+    /// </summary>
+    /// <remarks>
+    /// Набор нарисован в клетке 16, и в пиксели он ложится только там, где на единицу приходится
+    /// целое их число. Значок в шестнадцать точек занимает при 125 % ровно 20 пикселей, мелкий, в
+    /// двенадцать, — пятнадцать: путь, пересчитанный под такую клетку, снова стоит на сетке, и
+    /// пересчёт обязан это сохранять. Иначе он лишь переносит рисунок мимо пикселей в другом
+    /// месте.
+    /// </remarks>
+    [AvaloniaTheory]
+    [MemberData(nameof(Fitted))]
+    public void A_fitted_path_stands_on_the_grid_of_its_cell(string family, string name, int cell)
+    {
+        var text = File.ReadAllText(System.IO.Path.Combine(Root(), family, name + ".svg"));
+        var filled = !text.Contains("fill=\"none\"", StringComparison.Ordinal);
+        var commands = Commands(Drawn(family, name, cell));
+
+        Assert.All(Straight(commands), segment =>
+        {
+            var (from, to, locked) = segment;
+
+            if (locked)
+                return;
+
+            var horizontal = Math.Abs(from.Y - to.Y) < 1e-6 && Math.Abs(from.X - to.X) > 1e-6;
+            var vertical = Math.Abs(from.X - to.X) < 1e-6 && Math.Abs(from.Y - to.Y) > 1e-6;
+
+            if (!horizontal && !vertical)
+                return;
+
+            var value = horizontal ? from.Y : from.X;
+            var wanted = filled ? Math.Round(value) : Math.Round(value - 0.5) + 0.5;
+
+            Assert.True(
+                Math.Abs(value - wanted) < 1e-6,
+                string.Create(CultureInfo.InvariantCulture, $"{name} в клетке {cell}: {Grid}, а стоит на {value}"));
+        });
+    }
+
+    /// <summary>
+    /// Пересчёт сохраняет наклон: диагональ под 45° остаётся под 45°.
+    /// </summary>
+    /// <remarks>
+    /// Снять концы диагонали порознь — и она перестаёт быть диагональю: у шеврона плечи разной
+    /// длины, у галочки один конец выше другого. Проверено это было поломкой: простой пересчёт
+    /// координат ломал 34 диагонали из 101.
+    /// </remarks>
+    [AvaloniaTheory]
+    [MemberData(nameof(Fitted))]
+    public void A_fitted_diagonal_keeps_its_slope(string family, string name, int cell)
+    {
+        var straight = Straight(Commands(Data(File.ReadAllText(System.IO.Path.Combine(Root(), family, name + ".svg")))))
+            .Select(segment => (segment.From, segment.To))
+            .ToList();
+
+        var fitted = Straight(Commands(Drawn(family, name, cell)))
+            .Select(segment => (segment.From, segment.To))
+            .ToList();
+
+        Assert.Equal(straight.Count, fitted.Count);
+
+        for (var at = 0; at < straight.Count; at++)
+        {
+            var (from, to) = straight[at];
+            var step = (X: Math.Abs(to.X - from.X), Y: Math.Abs(to.Y - from.Y));
+
+            if (step.X < 1e-6 || step.Y < 1e-6 || Math.Abs(step.X - step.Y) > 1e-6)
+                continue;
+
+            var (was, now) = (fitted[at].From, fitted[at].To);
+
+            Assert.True(
+                Math.Abs(Math.Abs(now.X - was.X) - Math.Abs(now.Y - was.Y)) < 1e-6,
+                string.Create(CultureInfo.InvariantCulture,
+                    $"{name} в клетке {cell}: диагональ стала {Math.Abs(now.X - was.X)}×{Math.Abs(now.Y - was.Y)}"));
+        }
+    }
+
+    /// <summary>Путь иконки в этой клетке — строкой, как его собрал генератор.</summary>
+    private static string Drawn(string family, string name, int cell)
+    {
+        var paths = AxIcons.Drawn(Resolve(family, name));
+        var at = AxIcons.Sizing.ToList().IndexOf(cell);
+
+        Assert.True(at >= 0 && at < paths.Count, $"{name}: клетки {cell} у набора нет");
+
+        return paths[at];
     }
 
     /// <summary>Разбирает путь в точки: файлы набора записаны абсолютными командами.</summary>

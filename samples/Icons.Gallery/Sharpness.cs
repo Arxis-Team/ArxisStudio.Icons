@@ -65,11 +65,12 @@ public sealed class Sharpness
     /// <summary>
     /// Рисует путь в клетку заданного размера и снимает прозрачность попиксельно.
     /// </summary>
-    /// <param name="geometry">Путь в координатах 16×16.</param>
+    /// <param name="geometry">Путь в координатах клетки <paramref name="cell"/>.</param>
     /// <param name="stroke">Толщина обводки в тех же координатах.</param>
     /// <param name="filled">Силуэт вместо контура.</param>
-    /// <param name="size">Сторона снимка; 16 — размер, которым иконку показывают.</param>
-    public static Sharpness Measure(Geometry geometry, double stroke, bool filled, int size = 16)
+    /// <param name="size">Сторона снимка в пикселях: столько их значок и займёт на экране.</param>
+    /// <param name="cell">Клетка, в которой нарисован путь; у набора их восемь.</param>
+    public static Sharpness Measure(Geometry geometry, double stroke, bool filled, int size = 16, double cell = 16)
     {
         ArgumentNullException.ThrowIfNull(geometry);
 
@@ -77,9 +78,10 @@ public sealed class Sharpness
 
         using (var context = target.CreateDrawingContext())
         {
-            // Клетка пути всегда 16×16; снимок бывает крупнее, и тогда путь
-            // растягивается ровно так же, как его растягивает Viewbox витрины.
-            using var _ = context.PushTransform(Matrix.CreateScale(size / 16d, size / 16d));
+            // Клетка пути — та, в которой он нарисован; снимок бывает крупнее, и тогда путь
+            // растягивается ровно так же, как его растягивает Viewbox витрины. Когда клетка равна
+            // снимку, растягивать нечего: на единицу приходится пиксель, ради чего клетку и брали.
+            using var _ = context.PushTransform(Matrix.CreateScale(size / cell, size / cell));
 
             if (filled)
             {

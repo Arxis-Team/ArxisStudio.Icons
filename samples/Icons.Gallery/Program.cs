@@ -1,5 +1,7 @@
 using System.Globalization;
+using ArxisStudio.Icons;
 using Avalonia;
+using Avalonia.Media;
 
 namespace Icons.Gallery;
 
@@ -41,12 +43,14 @@ internal static class Program
     {
         BuildAvaloniaApp().SetupWithoutStarting();
 
-        var stroke = Stroke(args);
         var icon = Catalogue.Load().Single(candidate => candidate.Name == name);
-        var sharpness = Sharpness.Measure(icon.Geometry, stroke, icon.Filled);
+        var (geometry, stroke, pixels, cell) = Chosen(args, icon, Stroke(args));
+        var sharpness = Sharpness.Measure(geometry, stroke, icon.Filled, pixels, cell);
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Console.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{icon.Name}, обводка {stroke}"));
+        Console.WriteLine(string.Create(
+            CultureInfo.InvariantCulture,
+            $"{icon.Name}, клетка {cell}, {pixels} пикселей, обводка {stroke}"));
 
         for (var y = 0; y < sharpness.Size; y++)
         {
@@ -83,6 +87,40 @@ internal static class Program
             : 1.2;
     }
 
+    /// <summary>Значение числового ключа командной строки.</summary>
+    private static double Number(string[] args, string key, double fallback)
+    {
+        var at = Array.IndexOf(args, key);
+
+        return at >= 0 && at + 1 < args.Length
+            ? double.Parse(args[at + 1], CultureInfo.InvariantCulture)
+            : fallback;
+    }
+
+    /// <summary>
+    /// Что и в какой клетке мерить: размер значка в точках и масштаб экрана дают число пикселей.
+    /// </summary>
+    /// <param name="args">Командная строка: <c>--size</c> и <c>--scale</c>.</param>
+    /// <param name="icon">Иконка набора.</param>
+    /// <param name="stroke">Обводка, названная в командной строке.</param>
+    /// <remarks>
+    /// Набор нарисован в восьми клетках, и значок берёт ту, что равна числу занятых им пикселей.
+    /// Витрина обязана мерить тот же путь, что возьмёт экран, — иначе мера говорит о рисунке,
+    /// которого никто не увидит. В своей клетке единица равна пикселю, и штрих там — ровно один.
+    /// </remarks>
+    private static (Geometry Geometry, double Stroke, int Pixels, double Cell) Chosen(
+        string[] args, Icon icon, double stroke)
+    {
+        var size = Number(args, "--size", 16);
+        var scale = Number(args, "--scale", 1);
+        var pixels = (int)Math.Round(size * scale);
+        var fitted = Math.Abs(size * scale - pixels) < 0.01 ? AxIcons.Fitted(icon.Geometry, pixels) : null;
+
+        return fitted is null
+            ? (icon.Geometry, stroke, pixels, 16)
+            : (fitted, 1, pixels, pixels);
+    }
+
     /// <summary>
     /// Печатает меру резкости по всему набору и выходит.
     /// </summary>
@@ -90,6 +128,11 @@ internal static class Program
     /// Окно показывает двадцать худших, а править набор надо по всему списку —
     /// и сравнивать до и после правки. Глазами по витрине это делать негде:
     /// сто шестьдесят одна иконка, и разница в один пиксель.
+    /// <para>
+    /// <c>--size</c> и <c>--scale</c> говорят, каким значок будет на экране: размер в точках и
+    /// масштаб экрана. Из них выходит число пикселей, а из него — клетка, в которой набор для
+    /// этого случая нарисован: <c>--size 12 --scale 1.25</c> — пятнадцать пикселей и клетка 15.
+    /// </para>
     /// <para>
     /// Приложение поднимается без окна: растеризатору нужна платформа, а
     /// человеку в этом режиме — нет.
@@ -99,18 +142,19 @@ internal static class Program
     {
         BuildAvaloniaApp().SetupWithoutStarting();
 
-        var stroke = Stroke(args);
+        var given = Stroke(args);
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Console.WriteLine("имя\tсемейство\tзадето\tсплошных\tеле видных\tдоля сплошных\tдоля еле видных");
+        Console.WriteLine("имя\tсемейство\tклетка\tзадето\tсплошных\tеле видных\tдоля сплошных\tдоля еле видных");
 
         foreach (var icon in Catalogue.Load())
         {
-            var sharpness = Sharpness.Measure(icon.Geometry, stroke, icon.Filled);
+            var (geometry, stroke, pixels, cell) = Chosen(args, icon, given);
+            var sharpness = Sharpness.Measure(geometry, stroke, icon.Filled, pixels, cell);
 
             Console.WriteLine(string.Create(
                 CultureInfo.InvariantCulture,
-                $"{icon.Name}\t{icon.Family}\t{sharpness.Covered}\t{sharpness.Solid}\t{sharpness.Faint}\t{sharpness.SolidShare:F3}\t{sharpness.FaintShare:F3}"));
+                $"{icon.Name}\t{icon.Family}\t{cell}\t{sharpness.Covered}\t{sharpness.Solid}\t{sharpness.Faint}\t{sharpness.SolidShare:F3}\t{sharpness.FaintShare:F3}"));
         }
     }
 }
