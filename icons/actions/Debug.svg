@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
-     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+     stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
   <title>Жук: отладка.</title>
   <desc>Запуск и отладка</desc>
-  <path d="M6.5 4.5L7.5 5.5M3 8.5H6M5.5 11.5L4.5 12.5M10.5 4.5L9.5 5.5M14 8.5H11M11.5 11.5L12.5 12.5M6.5 7.5H10.5V10.5A2 2 0 0 1 8.5 12.5A2 2 0 0 1 6.5 10.5Z"/>
+  <path d="M3 8H5V9H3ZM3 10H5V11H3ZM14 8H12V9H14ZM14 10H12V11H14ZM7 5.5A1.5 1.5 0 1 1 10 5.5A1.5 1.5 0 1 1 7 5.5M5 9.5A3.5 3.5 0 1 1 12 9.5A3.5 3.5 0 1 1 5 9.5M8 7H9V12H8Z"/>
 </svg>
