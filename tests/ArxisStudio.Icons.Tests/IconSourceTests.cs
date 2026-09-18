@@ -124,6 +124,44 @@ public class IconSourceTests
     }
 
     /// <summary>
+    /// Плитка — силуэт, и каждая его точка стоит на целой единице сетки.
+    /// </summary>
+    /// <remarks>
+    /// Плитку рисуют в 64 и 128 точек — вчетверо и в восемь раз крупнее клетки, — и на любом
+    /// масштабе с шагом в четверть единица сетки занимает там целое число пикселей: 4 × 1,25 = 5,
+    /// 4 × 1,5 = 6, 4 × 1,75 = 7. Край заливки на целой точке ложится тогда на границу пикселя при
+    /// каждом из пяти масштабов, а размытыми остаются только диагонали под 45°. Половинная точка
+    /// попала бы на середину пикселя при 125 и 175 %, контур — тоже: его толщина сводится к
+    /// пикселям лишь там, где клетка своя.
+    /// </remarks>
+    [Fact]
+    public void A_tile_is_a_silhouette_with_every_point_on_a_whole_unit()
+    {
+        var tiles = Icons().Where(icon => icon.Name.EndsWith("Tile", StringComparison.Ordinal)).ToList();
+
+        Assert.NotEmpty(tiles);
+
+        Assert.All(tiles, tile =>
+        {
+            var text = File.ReadAllText(tile.File);
+
+            Assert.True(
+                Regex.Match(text, @"<svg[^>]*\sfill=""([^""]+)""").Groups[1].Value != "none",
+                $"{tile.Name}: плитка обязана быть силуэтом, а нарисована контуром");
+
+            Assert.All(Regex.Matches(Data(text), @"-?\d*\.?\d+"), number =>
+            {
+                var value = double.Parse(number.Value, CultureInfo.InvariantCulture);
+
+                Assert.True(
+                    Math.Abs(value - Math.Round(value)) < 1e-6 && value is >= 2 and <= 14,
+                    string.Create(CultureInfo.InvariantCulture,
+                        $"{tile.Name}: точка {value} не на целой единице или вне живой области 2…14"));
+            });
+        });
+    }
+
+    /// <summary>
     /// Прямые осевые штрихи стоят на сетке — контуры на полупикселе, силуэты на целом.
     /// </summary>
     /// <remarks>
