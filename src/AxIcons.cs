@@ -1,4 +1,6 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Avalonia.Media;
 
 namespace ArxisStudio.Icons;
@@ -63,6 +65,124 @@ public static class AxIcons
     internal static Geometry? Fitted(Geometry? icon, int cell) =>
         icon is not null && Sizes.TryGetValue(icon, out var sized) ? sized.Cell(cell) : null;
 
+    /// <summary>
+    /// Силуэт набора, посаженный вершинами на пиксели клетки <paramref name="cell"/>; <c>null</c> —
+    /// путь не силуэт набора или в нём есть кривые.
+    /// </summary>
+    /// <param name="icon">Путь набора.</param>
+    /// <param name="cell">Сколько пикселей экрана занимает сторона значка.</param>
+    /// <remarks>
+    /// Пересчёты набора закрывают значок в шестнадцать точек и мелкий, а силуэт растягивают и дальше —
+    /// плиткой, на размеры, где единица сетки не целая: 48 точек при 125 % — это 3,75 пикселя на
+    /// единицу, и край заливки, стоящий на целой точке сетки, падает внутрь пикселя. Путь из прямых
+    /// сажается на пиксели здесь: каждая вершина — к ближайшему целому пикселю клетки. Вершина
+    /// сдвигается не больше чем на полпикселя, прямые края встают на границы пикселей, а размытыми
+    /// остаются одни диагонали — как и у плитки в 64. Дугу так не посадить, и путь с дугами остаётся
+    /// как есть.
+    /// </remarks>
+    internal static Geometry? Snapped(Geometry? icon, int cell) =>
+        icon is not null && Silhouettes.TryGetValue(icon, out _) && Sizes.TryGetValue(icon, out var sized)
+            ? sized.Snapped(cell)
+            : null;
+
+    /// <summary>
+    /// Путь из прямых в клетке 16, пересчитанный в клетку <paramref name="cell"/> с вершинами на целых;
+    /// <c>null</c> — в пути есть кривые или относительные команды.
+    /// </summary>
+    /// <param name="path">Путь: <c>M</c>, <c>L</c>, <c>H</c>, <c>V</c> и <c>Z</c>, координаты абсолютные.</param>
+    /// <param name="cell">Сторона новой клетки в пикселях.</param>
+    internal static string? Snap(string path, int cell)
+    {
+        var scale = cell / 16.0;
+        var result = new StringBuilder();
+        var command = '\0';
+        var (x, y) = (0.0, 0.0);
+        var (startX, startY) = (0.0, 0.0);
+        var at = 0;
+
+        while (at < path.Length)
+        {
+            var c = path[at];
+
+            if (char.IsWhiteSpace(c) || c == ',')
+            {
+                at++;
+                continue;
+            }
+
+            if (char.IsLetter(c))
+            {
+                if (c is not ('M' or 'L' or 'H' or 'V' or 'Z'))
+                    return null;
+
+                command = c;
+                at++;
+
+                if (c == 'Z')
+                {
+                    result.Append('Z');
+                    (x, y) = (startX, startY);
+                }
+
+                continue;
+            }
+
+            switch (command)
+            {
+                case 'M':
+                    x = Number(path, ref at);
+                    y = Number(path, ref at);
+                    (startX, startY) = (x, y);
+                    Point(result, 'M', x, y, scale);
+
+                    // Пары после первой у «M» — продолжение линией, как в SVG.
+                    command = 'L';
+                    break;
+                case 'L':
+                    x = Number(path, ref at);
+                    y = Number(path, ref at);
+                    Point(result, 'L', x, y, scale);
+                    break;
+                case 'H':
+                    x = Number(path, ref at);
+                    Point(result, 'L', x, y, scale);
+                    break;
+                case 'V':
+                    y = Number(path, ref at);
+                    Point(result, 'L', x, y, scale);
+                    break;
+                default:
+                    return null;
+            }
+        }
+
+        return result.ToString();
+
+        static void Point(StringBuilder into, char command, double x, double y, double scale) =>
+            into.Append(command)
+                .Append(Pixel(x, scale).ToString(CultureInfo.InvariantCulture))
+                .Append(' ')
+                .Append(Pixel(y, scale).ToString(CultureInfo.InvariantCulture));
+
+        static int Pixel(double units, double scale) => (int)Math.Round(units * scale, MidpointRounding.AwayFromZero);
+
+        static double Number(string text, ref int at)
+        {
+            while (at < text.Length && (char.IsWhiteSpace(text[at]) || text[at] == ','))
+                at++;
+
+            var start = at;
+
+            if (at < text.Length && text[at] is '-' or '+')
+                at++;
+
+            while (at < text.Length && (char.IsDigit(text[at]) || text[at] == '.'))
+                at++;
+
+            return double.Parse(text.AsSpan(start, at - start), NumberStyles.Float, CultureInfo.InvariantCulture);
+        }
+    }
+
     private static Geometry P(string path) => Geometry.Parse(path);
 
     /// <summary>Путь клетки 16 и его пересчёты; разбирается тот, который сейчас нужен.</summary>
@@ -70,7 +190,7 @@ public static class AxIcons
     {
         var icon = Geometry.Parse(path);
 
-        Sizes.AddOrUpdate(icon, new Sized(fitted));
+        Sizes.AddOrUpdate(icon, new Sized(path, fitted));
 
         return icon;
     }
@@ -83,9 +203,17 @@ public static class AxIcons
     }
 
     /// <summary>Тот же рисунок в клетках набора: разбирается по первому спросу.</summary>
-    private sealed class Sized(string[] paths)
+    /// <param name="source">Путь клетки 16 — из него сажается силуэт на пиксели.</param>
+    /// <param name="paths">Пересчёты под клетки набора.</param>
+    private sealed class Sized(string source, string[] paths)
     {
         private readonly Geometry?[] _parsed = new Geometry?[paths.Length];
+
+        /// <summary>
+        /// Посаженные силуэты по клеткам. Клеток на деле немного — размеры плитки, умноженные на
+        /// масштабы экранов, — и каждую считают один раз.
+        /// </summary>
+        private readonly Dictionary<int, Geometry?> _snapped = [];
 
         /// <summary>Пути как есть: их сверяют проверки набора.</summary>
         public IReadOnlyList<string> Paths => paths;
@@ -95,6 +223,17 @@ public static class AxIcons
             var at = Array.IndexOf(Cells, cell);
 
             return at < 0 ? null : _parsed[at] ??= Geometry.Parse(paths[at]);
+        }
+
+        public Geometry? Snapped(int cell)
+        {
+            lock (_snapped)
+            {
+                if (!_snapped.TryGetValue(cell, out var snapped))
+                    _snapped[cell] = snapped = Snap(source, cell) is { } path ? Geometry.Parse(path) : null;
+
+                return snapped;
+            }
         }
     }
 

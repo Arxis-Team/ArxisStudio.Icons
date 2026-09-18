@@ -162,6 +162,66 @@ public class IconSourceTests
     }
 
     /// <summary>
+    /// Силуэт из прямых, растянутый туда, где единица сетки не целая, сажается на пиксели: края — на
+    /// целых, и каждый не дальше полупикселя от своего места. Силуэт с дугой не сажается вовсе.
+    /// </summary>
+    /// <remarks>
+    /// Плитку окна проекта растягивают ступенями по 16 точек, и у 48 при 125 % на единицу приходится
+    /// 3,75 пикселя: край заливки на целой точке сетки падает внутрь пикселя. Сдвиг вершины к
+    /// ближайшему пикселю ставит прямой край на границу пикселя и меняет рисунок меньше чем на
+    /// пиксель. Дугу так не посадить — её вершины держат касание, — и путь с дугой остаётся как был.
+    /// </remarks>
+    [AvaloniaFact]
+    public void A_stretched_silhouette_is_snapped_to_the_pixels_nearest_to_its_edges()
+    {
+        var silhouettes = Icons()
+            .Select(icon => (icon.Name, Path: Data(File.ReadAllText(icon.File)), Geometry: Resolve(icon.Family, icon.Name)))
+            .Where(icon => new AxIcon { Data = icon.Geometry }.Classes.Contains(":filled"))
+            .ToList();
+
+        Assert.Contains(silhouettes, icon => icon.Name == "FolderTile");
+        Assert.Contains(silhouettes, icon => icon.Name == "DocumentTile");
+
+        foreach (var (name, path, geometry) in silhouettes)
+        {
+            var curved = Regex.IsMatch(path, "[AaCcQqSsTt]");
+
+            for (var cell = 20; cell <= 224; cell++)
+            {
+                var snapped = AxIcons.Snapped(geometry, cell);
+
+                if (curved)
+                {
+                    Assert.True(snapped is null, $"{name}: путь с дугой посажен на пиксели в клетке {cell}");
+                    continue;
+                }
+
+                Assert.True(snapped is not null, $"{name}: силуэт из прямых не посажен на пиксели в клетке {cell}");
+
+                var scale = cell / 16.0;
+                var ideal = geometry.Bounds;
+                var edges = new[]
+                {
+                    (snapped.Bounds.Left, ideal.Left * scale),
+                    (snapped.Bounds.Top, ideal.Top * scale),
+                    (snapped.Bounds.Right, ideal.Right * scale),
+                    (snapped.Bounds.Bottom, ideal.Bottom * scale),
+                };
+
+                foreach (var (edge, place) in edges)
+                {
+                    Assert.True(
+                        Math.Abs(edge - Math.Round(edge)) < 1e-6,
+                        string.Create(CultureInfo.InvariantCulture, $"{name} в клетке {cell}: край {edge} не на целом пикселе"));
+                    Assert.True(
+                        Math.Abs(edge - place) <= 0.5 + 1e-6,
+                        string.Create(CultureInfo.InvariantCulture, $"{name} в клетке {cell}: край {edge} дальше полупикселя от {place}"));
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// Прямые осевые штрихи стоят на сетке — контуры на полупикселе, силуэты на целом.
     /// </summary>
     /// <remarks>
