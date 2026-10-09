@@ -614,6 +614,30 @@ public static class AxIcons
 
 
     // Дизайнер форм
+    /// <summary>Выровнять по нижнему краю.</summary>
+    public static Geometry AlignBottom { get => field ??= P("M3 13.5H14M6.5 5V12M8.5 3V12M10.5 7V12",
+        [
+            "M2 10.5H11M4.5 4V9M6.5 2V9M7.5 5V9",
+            "M3 12.5H13M6.5 5V11M7.5 3V11M9.5 7V11",
+            "M3 15.5H16M7.5 6V14M9.5 3V14M11.5 8V14",
+            "M4 16.5H18M8.5 6V15M10.5 4V15M13.5 9V15",
+            "M4 17.5H18M8.5 7V16M11.5 4V16M13.5 9V16",
+            "M5 20.5H21M9.5 8V18M12.5 5V18M15.5 11V18",
+            "M5 23.5H25M11.5 9V21M14.5 5V21M18.5 12V21"
+        ]); }
+
+    /// <summary>Выровнять по центру по горизонтали.</summary>
+    public static Geometry AlignHorizontalCenter { get => field ??= P("M8.5 3V14M5 6.5H12M3 8.5H14M6 10.5H11",
+        [
+            "M6.5 2V11M4 4.5H9M2 6.5H11M5 7.5H8",
+            "M7.5 3V13M5 6.5H11M3 7.5H13M6 9.5H10",
+            "M9.5 3V16M6 7.5H14M3 9.5H16M7 11.5H12",
+            "M10.5 4V18M6 8.5H15M4 10.5H18M8 13.5H14",
+            "M11.5 4V18M7 8.5H16M4 11.5H18M8 13.5H14",
+            "M12.5 5V21M8 9.5H18M5 12.5H21M9 15.5H17",
+            "M14.5 5V25M9 11.5H21M5 14.5H25M11 18.5H19"
+        ]); }
+
     /// <summary>Выровнять по левому краю.</summary>
     public static Geometry AlignLeft { get => field ??= P("M3.5 3V14M5 6.5H12M5 8.5H14M5 10.5H10",
         [
@@ -624,6 +648,42 @@ public static class AxIcons
             "M4.5 4V18M7 8.5H16M7 11.5H18M7 13.5H13",
             "M5.5 5V21M8 9.5H18M8 12.5H21M8 15.5H15",
             "M6.5 5V25M9 11.5H21M9 14.5H25M9 18.5H18"
+        ]); }
+
+    /// <summary>Выровнять по правому краю.</summary>
+    public static Geometry AlignRight { get => field ??= P("M13.5 3V14M5 6.5H12M3 8.5H12M7 10.5H12",
+        [
+            "M10.5 2V11M4 4.5H9M2 6.5H9M5 7.5H9",
+            "M12.5 3V13M5 6.5H11M3 7.5H11M7 9.5H11",
+            "M15.5 3V16M6 7.5H14M3 9.5H14M8 11.5H14",
+            "M16.5 4V18M6 8.5H15M4 10.5H15M9 13.5H15",
+            "M17.5 4V18M7 8.5H16M4 11.5H16M9 13.5H16",
+            "M20.5 5V21M8 9.5H18M5 12.5H18M11 15.5H18",
+            "M23.5 5V25M9 11.5H21M5 14.5H21M12 18.5H21"
+        ]); }
+
+    /// <summary>Выровнять по верхнему краю.</summary>
+    public static Geometry AlignTop { get => field ??= P("M3 3.5H14M6.5 5V12M8.5 5V14M10.5 5V10",
+        [
+            "M2 2.5H11M4.5 4V9M6.5 4V11M7.5 4V8",
+            "M3 3.5H13M6.5 5V11M7.5 5V13M9.5 5V9",
+            "M3 3.5H16M7.5 6V14M9.5 6V16M11.5 6V11",
+            "M4 4.5H18M8.5 6V15M10.5 6V18M13.5 6V13",
+            "M4 4.5H18M8.5 7V16M11.5 7V18M13.5 7V13",
+            "M5 5.5H21M9.5 8V18M12.5 8V21M15.5 8V15",
+            "M5 6.5H25M11.5 9V21M14.5 9V25M18.5 9V18"
+        ]); }
+
+    /// <summary>Выровнять по центру по вертикали.</summary>
+    public static Geometry AlignVerticalCenter { get => field ??= P("M3 8.5H14M6.5 5V12M8.5 3V14M10.5 6V11",
+        [
+            "M2 6.5H11M4.5 4V9M6.5 2V11M7.5 5V8",
+            "M3 7.5H13M6.5 5V11M7.5 3V13M9.5 6V10",
+            "M3 9.5H16M7.5 6V14M9.5 3V16M11.5 7V12",
+            "M4 10.5H18M8.5 6V15M10.5 4V18M13.5 8V14",
+            "M4 11.5H18M8.5 7V16M11.5 4V18M13.5 8V14",
+            "M5 12.5H21M9.5 8V18M12.5 5V21M15.5 9V17",
+            "M5 14.5H25M11.5 9V21M14.5 5V25M18.5 11V19"
         ]); }
 
     /// <summary>Звенья: привязка данных.</summary>
@@ -768,6 +828,30 @@ public static class AxIcons
             "M4.5 4.5H17.5V17.5H4.5ZM11.5 5V17",
             "M5.5 5.5H20.5V20.5H5.5ZM12.5 6V20",
             "M6.5 6.5H23.5V23.5H6.5ZM14.5 7V23"
+        ]); }
+
+    /// <summary>Растянуть по горизонтали.</summary>
+    public static Geometry StretchHorizontal { get => field ??= P("M3.5 3V14M13.5 3V14M5 6.5H12M5 8.5H12M5 10.5H12",
+        [
+            "M2.5 2V11M10.5 2V11M4 4.5H9M4 6.5H9M4 7.5H9",
+            "M3.5 3V13M12.5 3V13M5 6.5H11M5 7.5H11M5 9.5H11",
+            "M3.5 3V16M15.5 3V16M6 7.5H14M6 9.5H14M6 11.5H14",
+            "M4.5 4V18M16.5 4V18M6 8.5H15M6 10.5H15M6 13.5H15",
+            "M4.5 4V18M17.5 4V18M7 8.5H16M7 11.5H16M7 13.5H16",
+            "M5.5 5V21M20.5 5V21M8 9.5H18M8 12.5H18M8 15.5H18",
+            "M6.5 5V25M23.5 5V25M9 11.5H21M9 14.5H21M9 18.5H21"
+        ]); }
+
+    /// <summary>Растянуть по вертикали.</summary>
+    public static Geometry StretchVertical { get => field ??= P("M3 3.5H14M3 13.5H14M6.5 5V12M8.5 5V12M10.5 5V12",
+        [
+            "M2 2.5H11M2 10.5H11M4.5 4V9M6.5 4V9M7.5 4V9",
+            "M3 3.5H13M3 12.5H13M6.5 5V11M7.5 5V11M9.5 5V11",
+            "M3 3.5H16M3 15.5H16M7.5 6V14M9.5 6V14M11.5 6V14",
+            "M4 4.5H18M4 16.5H18M8.5 6V15M10.5 6V15M13.5 6V15",
+            "M4 4.5H18M4 17.5H18M8.5 7V16M11.5 7V16M13.5 7V16",
+            "M5 5.5H21M5 20.5H21M9.5 8V18M12.5 8V18M15.5 8V18",
+            "M5 6.5H25M5 23.5H25M11.5 9V21M14.5 9V21M18.5 9V21"
         ]); }
 
     /// <summary>Литера T: текст.</summary>

@@ -375,6 +375,43 @@ def _():
     return Icon().vline(3.5, 3, 14).hline(6.5, 5, 12).hline(8.5, 5, 14).hline(10.5, 5, 10)
 
 
+# Выравнивание элемента в его месте: край — черта, элемент — полосы у неё. Правый край — левый, отражённый,
+# середина — полосы, разрезанные чертой, растянутое — полосы от края до края. По вертикали — то же, повёрнутое.
+@action('AlignRight')
+def _():
+    return Icon().vline(13.5, 3, 14).hline(6.5, 5, 12).hline(8.5, 3, 12).hline(10.5, 7, 12)
+
+
+@action('AlignHorizontalCenter')
+def _():
+    return Icon().vline(C, 3, 14).hline(6.5, 5, 12).hline(8.5, 3, 14).hline(10.5, 6, 11)
+
+
+@action('StretchHorizontal')
+def _():
+    return Icon().vline(3.5, 3, 14).vline(13.5, 3, 14).hline(6.5, 5, 12).hline(8.5, 5, 12).hline(10.5, 5, 12)
+
+
+@action('AlignTop')
+def _():
+    return Icon().hline(3.5, 3, 14).vline(6.5, 5, 12).vline(8.5, 5, 14).vline(10.5, 5, 10)
+
+
+@action('AlignBottom')
+def _():
+    return Icon().hline(13.5, 3, 14).vline(6.5, 5, 12).vline(8.5, 3, 12).vline(10.5, 7, 12)
+
+
+@action('AlignVerticalCenter')
+def _():
+    return Icon().hline(C, 3, 14).vline(6.5, 5, 12).vline(8.5, 3, 14).vline(10.5, 6, 11)
+
+
+@action('StretchVertical')
+def _():
+    return Icon().hline(3.5, 3, 14).hline(13.5, 3, 14).vline(6.5, 5, 12).vline(8.5, 5, 12).vline(10.5, 5, 12)
+
+
 @action('Move')
 def _():
     icon = Icon().vline(C, 3, 14).hline(C, 3, 14)
