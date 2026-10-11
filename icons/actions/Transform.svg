@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
+     stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
+  <title>Рамка со стрелкой за угол: преобразование — сдвиг, поворот, масштаб.</title>
+  <desc>Инспектор</desc>
+  <path d="M3.5 6.5H10.5V13.5H3.5ZM7.5 9.5L13.5 3.5M10 3.5L13.5 3.5L13.5 7"/>
+</svg>
